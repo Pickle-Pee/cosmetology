@@ -6,6 +6,7 @@ import Button from "../../shared/ui/Button.jsx";
 const nav = [
   { to: "/", label: "Главная" },
   { to: "/services", label: "Услуги" },
+  { to: "/prices", label: "Прайс" },
   { to: "/articles", label: "Статьи" },
   { to: "/reviews", label: "Отзывы" },
   { to: "/contacts", label: "Контакты" },
@@ -14,14 +15,12 @@ const nav = [
 export default function Header() {
   const [open, setOpen] = useState(false);
 
-  // Закрывать меню по Esc
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // Блокировать прокрутку фона, когда меню открыто
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => (document.body.style.overflow = "");
@@ -34,7 +33,7 @@ export default function Header() {
       <Container className="header__inner">
         <NavLink to="/" className="logo" aria-label="На главную" onClick={close}>
           <span className="logo__mark" />
-          <span className="logo__text">Doctor • Cosmetic</span>
+          <span className="logo__text">Наталия Шорина</span>
         </NavLink>
 
         {/* Десктоп-меню */}
@@ -51,8 +50,13 @@ export default function Header() {
         </nav>
 
         <div className="header__right">
-          <a className="header__cta" href="tel:+70000000000">
-            +7 (000) 000-00-00
+          <a
+            className="header__cta"
+            href="https://t.me/dr_shorina"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Telegram
           </a>
 
           {/* Бургер (мобила) */}
@@ -95,9 +99,16 @@ export default function Header() {
           </nav>
 
           <div className="mobileMenu__actions">
-            <Button className="w100" onClick={() => alert("Запись подключим позже")}>
+            <Button
+              className="w100"
+              onClick={() => {
+                close();
+                window.open("https://t.me/dr_shorina", "_blank");
+              }}
+            >
               Записаться
             </Button>
+
             <Button
               variant="ghost"
               className="w100"
@@ -108,8 +119,15 @@ export default function Header() {
             >
               Контакты
             </Button>
-            <a className="mobileMenu__phone" href="tel:+70000000000" onClick={close}>
-              +7 (000) 000-00-00
+
+            <a
+              className="mobileMenu__phone"
+              href="https://t.me/dr_shorina"
+              target="_blank"
+              rel="noreferrer"
+              onClick={close}
+            >
+              @dr_shorina
             </a>
           </div>
         </div>

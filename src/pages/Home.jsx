@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Container from "../shared/ui/Container.jsx";
 import Button from "../shared/ui/Button.jsx";
 import Carousel from "../shared/ui/Carousel.jsx";
@@ -26,6 +27,17 @@ const slides = [
   },
 ];
 
+const certificates = [
+  { src: "/certificates/cert-1.jpg", title: "Диплом" },
+  { src: "/certificates/cert-2.jpg", title: "Сертификат" },
+  { src: "/certificates/cert-3.jpg", title: "Повышение квалификации" },
+  { src: "/certificates/cert-4.jpg", title: "Косметология" },
+  { src: "/certificates/cert-5.jpg", title: "Инъекционные методики" },
+  { src: "/certificates/cert-6.jpg", title: "Аппаратные методики" },
+  { src: "/certificates/cert-7.jpg", title: "Профессиональное обучение" },
+  { src: "/certificates/cert-8.jpg", title: "Сертификат тренера" },
+];
+
 function PlaceholderCard({ title, text, cta = "Подробнее →", onClick }) {
   return (
     <article className="card card--minimal">
@@ -35,13 +47,32 @@ function PlaceholderCard({ title, text, cta = "Подробнее →", onClick 
       </div>
       <p className="muted">{text}</p>
       <div className="card__bottom">
-        <button className="link" onClick={onClick}>{cta}</button>
+        <button className="link" onClick={onClick}>
+          {cta}
+        </button>
       </div>
     </article>
   );
 }
 
 export default function Home() {
+  const [isCertificatesOpen, setIsCertificatesOpen] = useState(false);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+
+  useEffect(() => {
+    const isLocked = isCertificatesOpen || !!selectedCertificate;
+    document.body.style.overflow = isLocked ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isCertificatesOpen, selectedCertificate]);
+
+  const openCertificateViewer = (item) => {
+    setIsCertificatesOpen(false);
+    setSelectedCertificate(item);
+  };
+
   return (
     <>
       <Carousel
@@ -49,7 +80,9 @@ export default function Home() {
         slides={slides.map((s) => ({
           ...s,
           primaryAction: (
-            <Button onClick={() => alert("Запись подключим позже")}>Записаться</Button>
+            <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
+              Записаться
+            </Button>
           ),
           secondaryAction: (
             <Button variant="ghost" onClick={() => location.assign("/services")}>
@@ -60,33 +93,61 @@ export default function Home() {
       />
 
       {/* О враче (сразу под каруселью) */}
-      <section className="section about">
+      <section className="section aboutHero">
         <Container>
-          <div className="aboutCard">
-            <div className="aboutGrid">
-              <div className="photoStub" aria-hidden="true" />
-              <div>
-                <div className="kicker" style={{ color: "var(--muted)" }}>
-                  О враче
+          <div className="aboutHeroCard">
+            <div className="aboutHeroGrid">
+              <div className="aboutHeroContent">
+                <div className="kicker aboutHero__kicker">О враче</div>
+
+                <h1 className="aboutHero__title">
+                  Наталия Шорина
+                </h1>
+
+                <div className="aboutHero__subtitle">
+                  Врач-дерматокосметолог, гастроэнтеролог, педиатр
                 </div>
-                <h2 className="h2" style={{ marginTop: 6 }}>
-                  Имя Фамилия
-                </h2>
-                <p className="muted" style={{ marginTop: 6 }}>
-                  Врач-косметолог. Тут чето о себе.
+
+                <p className="aboutHero__text">
+                  Тренер по аппаратным и инъекционным методикам в косметологии.
+                  Сертифицированный тренер брендов Juvelook & Lenisna, PRX-T33, Repart.
                 </p>
 
-                <div className="badges">
-                  <span className="badge">тут еще какая то инфа </span>
-                  {/* <span className="badge">сертификаты</span>
-                  <span className="badge">приём: город</span> */}
+                <p className="aboutHero__text">
+                  Ex-преподаватель кафедры РНИМУ им. Н.И. Пирогова, спикер международных
+                  конгрессов по косметологии, автор профильных и популярных публикаций.
+                </p>
+
+                <p className="aboutHero__text">
+                  Помогаю женщинам и мужчинам выглядеть красивее, моложе и ухоженнее.
+                  Обучаю врачей-косметологов по России и СНГ.
+                </p>
+
+                <div className="badges aboutHero__badges">
+                  <span className="badge">Juvelook & Lenisna</span>
+                  <span className="badge">PRX-T33</span>
+                  <span className="badge">Repart</span>
+                  <span className="badge">#TOPBEAUTYDOCTOR</span>
                 </div>
 
-                <div className="aboutActions">
-                  <Button onClick={() => alert("Форма записи позже")}>Записаться</Button>
-                  <Button variant="ghost" onClick={() => location.assign("/contacts")}>
-                    Контакты
+                <div className="aboutHero__actions">
+                  <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
+                    Записаться
                   </Button>
+                  <Button variant="ghost" onClick={() => location.assign("/prices")}>
+                    Посмотреть прайс
+                  </Button>
+                </div>
+              </div>
+
+              <div className="aboutHeroPhoto">
+                <div className="aboutHero__imageFrame">
+                  <img
+                    src="/doctor/doctor-full.jpg"
+                    alt="Наталия Шорина"
+                    className="aboutHeroPhoto__image"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>
@@ -94,12 +155,63 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Услуги (заглушка) */}
+      {/* Дипломы и сертификаты */}
       <section className="section">
         <Container>
           <div className="section__head">
-            <h2 className="h2">Услуги</h2>
-            <p className="muted">Короткий список — без прайса и деталей.</p>
+            <h2 className="h2">Дипломы и сертификаты</h2>
+            <p className="muted">
+              Подтверждённая медицинская квалификация, профильное обучение и
+              регулярное повышение квалификации в области косметологии,
+              инъекционных и аппаратных методик.
+            </p>
+          </div>
+
+          <div className="certGrid certGrid--preview">
+            {certificates.slice(0, 4).map((item) => (
+              <button
+                key={item.src}
+                type="button"
+                className="certCard"
+                onClick={() => openCertificateViewer(item)}
+              >
+                <div className="certCard__imageWrap">
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="certCard__image"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="certCard__body">
+                  <span className="certCard__title">{item.title}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          <div className="certActions">
+            <Button variant="ghost" onClick={() => setIsCertificatesOpen(true)}>
+              Смотреть все
+            </Button>
+          </div>
+        </Container>
+      </section>
+
+      {/* Услуги (заглушка) */}
+      <section className="section">
+        <Container>
+          <div className="section__head section__head--row">
+            <div>
+              <h2 className="h2">Услуги</h2>
+              <p className="muted">
+                Основные направления и отдельная страница с актуальным прайсом.
+              </p>
+            </div>
+
+            <Button variant="ghost" onClick={() => location.assign("/prices")}>
+              Посмотреть прайс
+            </Button>
           </div>
 
           <div className="grid">
@@ -107,7 +219,10 @@ export default function Home() {
               { title: "Консультация", text: "Диагностика и подбор плана ухода." },
               { title: "Чистка лица", text: "Атравматичная / ультразвуковая." },
               { title: "Пилинги", text: "По показаниям, сезонность и уход." },
-              { title: "Инъекционные методики", text: "Пример карточки под направление." },
+              {
+                title: "Инъекционные методики",
+                text: "Пример карточки под направление.",
+              },
             ].map((c) => (
               <PlaceholderCard
                 key={c.title}
@@ -125,13 +240,18 @@ export default function Home() {
         <Container>
           <div className="section__head">
             <h2 className="h2">Отзывы</h2>
-            <p className="muted">3 карточки и кнопка на страницу — потом подключим реальные.</p>
+            <p className="muted">
+              3 карточки и кнопка на страницу — потом подключим реальные.
+            </p>
           </div>
 
           <div className="grid">
             {[
               { title: "Анна", text: "“Очень деликатно и понятно объяснили.”" },
-              { title: "Мария", text: "“Комфортно, аккуратно, понравился результат.”" },
+              {
+                title: "Мария",
+                text: "“Комфортно, аккуратно, понравился результат.”",
+              },
               { title: "Екатерина", text: "“Вернусь ещё, спасибо!”" },
             ].map((r) => (
               <PlaceholderCard
@@ -178,12 +298,111 @@ export default function Home() {
           <div className="cta">
             <div>
               <h2 className="h2">Запись и контакты</h2>
-              <p className="muted">Телефон, мессенджеры, адрес — всё компактно на странице контактов.</p>
+              <p className="muted">
+                Телефон, мессенджеры, адрес — всё компактно на странице
+                контактов.
+              </p>
             </div>
-            <Button onClick={() => location.assign("/contacts")}>Открыть контакты</Button>
+            <Button onClick={() => location.assign("/contacts")}>
+              Открыть контакты
+            </Button>
           </div>
         </Container>
       </section>
+
+      {isCertificatesOpen && (
+        <div
+          className="certModalOverlay"
+          onClick={() => setIsCertificatesOpen(false)}
+          role="presentation"
+        >
+          <div
+            className="certModal"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Дипломы и сертификаты"
+          >
+            <div className="certModal__header">
+              <div>
+                <div className="kicker" style={{ color: "var(--muted)" }}>
+                  Квалификация
+                </div>
+                <h3 className="h3" style={{ marginTop: 6 }}>
+                  Дипломы и сертификаты
+                </h3>
+              </div>
+
+              <button
+                type="button"
+                className="certModal__close"
+                onClick={() => setIsCertificatesOpen(false)}
+                aria-label="Закрыть"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="certGrid">
+              {certificates.map((item) => (
+                <button
+                  key={item.src}
+                  type="button"
+                  className="certCard"
+                  onClick={() => openCertificateViewer(item)}
+                >
+                  <div className="certCard__imageWrap">
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="certCard__image"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="certCard__body">
+                    <span className="certCard__title">{item.title}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedCertificate && (
+        <div
+          className="certViewerOverlay"
+          onClick={() => setSelectedCertificate(null)}
+          role="presentation"
+        >
+          <div
+            className="certViewer"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={selectedCertificate.title}
+          >
+            <button
+              type="button"
+              className="certViewer__close"
+              onClick={() => setSelectedCertificate(null)}
+              aria-label="Закрыть"
+            >
+              ×
+            </button>
+
+            <img
+              src={selectedCertificate.src}
+              alt={selectedCertificate.title}
+              className="certViewer__image"
+            />
+
+            <div className="certViewer__caption">
+              {selectedCertificate.title}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

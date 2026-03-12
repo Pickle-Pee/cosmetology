@@ -5,8 +5,8 @@ export default function Footer() {
     <footer className="footer">
       <Container className="footer__inner">
         <div>
-          <div className="footer__brand">Test Clinic</div>
-          <div className="muted">Косметология • Эстетика • Уход</div>
+          <div className="footer__brand">Наталия Шорина</div>
+<div className="muted">Дерматокосметология • Эстетика • Обучение</div> 
         </div>
         <div className="muted">© {new Date().getFullYear()} Все права защищены</div>
       </Container>

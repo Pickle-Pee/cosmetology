@@ -1,34 +1,49 @@
 import Container from "../shared/ui/Container.jsx";
 import Button from "../shared/ui/Button.jsx";
+import PageIntro from "../shared/ui/PageIntro.jsx";
 
 export default function Contacts() {
   return (
-    <section className="section">
+    <section className="section pageSection">
       <Container>
-        <h1>Контакты</h1>
-        <p className="muted">Адрес, телефон, мессенджеры, карта.</p>
+        <PageIntro
+          kicker="Контакты"
+          title="Запись и связь"
+          text="Для записи на консультацию и процедуры напишите в Telegram."
+          action={
+            <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
+              Написать в Telegram
+            </Button>
+          }
+        />
 
         <div className="two-col">
           <div className="card">
-            <h3>Связаться</h3>
-            <div className="list">
-              <div><span className="muted">Телефон:</span> <a className="link" href="tel:+70000000000">+7 (000) 000-00-00</a></div>
-              <div><span className="muted">Email:</span> <a className="link" href="mailto:hello@clinic.ru">hello@clinic.ru</a></div>
-              <div><span className="muted">Адрес:</span> г. …, ул. …</div>
-              <div><span className="muted">Время:</span> 10:00–20:00</div>
-            </div>
+            <h3 className="h3">Связаться</h3>
 
-            <div style={{ marginTop: 16, display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <Button onClick={() => alert("Форма записи — дальше сделаем")}>Записаться</Button>
-              <Button variant="ghost" onClick={() => alert("Откроем WhatsApp/Telegram")}>
-                Мессенджер
-              </Button>
+            <div className="infoList">
+              <div className="infoRow">
+                <span className="muted">Telegram</span>
+                <a
+                  className="link"
+                  href="https://t.me/dr_shorina"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  @dr_shorina
+                </a>
+              </div>
+
+              <div className="infoRow">
+                <span className="muted">Формат связи</span>
+                <span>запись, консультации, вопросы по процедурам</span>
+              </div>
             </div>
           </div>
 
           <div className="card map">
             <div className="map__stub">
-              Карта-заглушка (потом вставим Яндекс/Google iframe)
+              Адрес приёма и карту можно добавить следующим этапом
             </div>
           </div>
         </div>

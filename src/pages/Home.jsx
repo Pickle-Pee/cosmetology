@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Container from "../shared/ui/Container.jsx";
 import Button from "../shared/ui/Button.jsx";
 import Carousel from "../shared/ui/Carousel.jsx";
+import reviews from "../data/reviews.json";
 
 const slides = [
   {
@@ -9,7 +10,7 @@ const slides = [
     kicker: "Косметология • Уход • Эстетика",
     title: "Мягкий подход\nи понятный результат",
     text: "Сайт-визитка: карусель, блок о враче и несколько разделов-заглушек.",
-    image: "", // можно: "/slides/slide-1.jpg"
+    image: "",
   },
   {
     id: "s2",
@@ -59,6 +60,8 @@ export default function Home() {
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
+  const featuredReviews = reviews.filter((review) => review.featured).slice(0, 2);
+
   useEffect(() => {
     const isLocked = isCertificatesOpen || !!selectedCertificate;
     document.body.style.overflow = isLocked ? "hidden" : "";
@@ -92,7 +95,6 @@ export default function Home() {
         }))}
       />
 
-      {/* О враче (сразу под каруселью) */}
       <section className="section aboutHero">
         <Container>
           <div className="aboutHeroCard">
@@ -104,29 +106,47 @@ export default function Home() {
                   Наталия Шорина
                 </h1>
 
+                <span className="aboutHero__experience">
+                  10+ лет практики в эстетической медицине
+                </span>
+
                 <div className="aboutHero__subtitle">
                   Врач-дерматокосметолог, гастроэнтеролог, педиатр
                 </div>
 
                 <p className="aboutHero__text">
                   Тренер по аппаратным и инъекционным методикам в косметологии.
-                  Сертифицированный тренер брендов Juvelook & Lenisna, PRX-T33, Repart.
+                  Сертифицированный тренер брендов <b>Juvelook & Lenisna, PRX-T33, Repart</b>.
                 </p>
 
                 <p className="aboutHero__text">
-                  Ex-преподаватель кафедры РНИМУ им. Н.И. Пирогова, спикер международных
-                  конгрессов по косметологии, автор профильных и популярных публикаций.
+                  Ex-преподаватель кафедры РНИМУ им. Н.И. Пирогова.
+                  Спикер международных конгрессов по косметологии.
                 </p>
 
                 <p className="aboutHero__text">
-                  Помогаю женщинам и мужчинам выглядеть красивее, моложе и ухоженнее.
-                  Обучаю врачей-косметологов по России и СНГ.
+                  Автор публикаций в изданиях: <b>1NEP, Облик, Lady.Mail, Живи, Улыбка радуги,
+                    SB.BY, Комсомольская правда, ОК</b> и других.
+                </p>
+
+                <p className="aboutHero__text">
+                  Член Национального общества мезотерапии и РОСМЕДОБР.
+                  Финалист проекта <b>#DOCTORSTAR</b>, победитель <b>#TOPBEAUTYDOCTOR</b>.
+                </p>
+
+                <p className="aboutHero__text">
+                  <b>Врачую:</b> делаю женщин и мужчин красивее, моложе и ухоженнее.
+                </p>
+
+                <p className="aboutHero__text">
+                  <b>Делюсь опытом:</b> обучаю врачей-косметологов по России и СНГ.
                 </p>
 
                 <div className="badges aboutHero__badges">
                   <span className="badge">Juvelook & Lenisna</span>
                   <span className="badge">PRX-T33</span>
                   <span className="badge">Repart</span>
+                  <span className="badge">#DOCTORSTAR</span>
                   <span className="badge">#TOPBEAUTYDOCTOR</span>
                 </div>
 
@@ -134,6 +154,7 @@ export default function Home() {
                   <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
                     Записаться
                   </Button>
+
                   <Button variant="ghost" onClick={() => location.assign("/prices")}>
                     Посмотреть прайс
                   </Button>
@@ -142,12 +163,15 @@ export default function Home() {
 
               <div className="aboutHeroPhoto">
                 <div className="aboutHero__imageFrame">
-                  <img
-                    src="/doctor/doctor-full.jpg"
-                    alt="Наталия Шорина"
-                    className="aboutHeroPhoto__image"
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source media="(max-width: 900px)" srcSet="/doctor/doctor-photo.jpg" />
+                    <img
+                      src="/doctor/doctor-full.jpg"
+                      alt="Наталия Шорина"
+                      className="aboutHeroPhoto__image"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
               </div>
             </div>
@@ -155,7 +179,6 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Дипломы и сертификаты */}
       <section className="section">
         <Container>
           <div className="section__head">
@@ -198,7 +221,6 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Услуги (заглушка) */}
       <section className="section">
         <Container>
           <div className="section__head section__head--row">
@@ -235,38 +257,42 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Отзывы (заглушка) */}
       <section className="section section--alt">
         <Container>
-          <div className="section__head">
-            <h2 className="h2">Отзывы</h2>
-            <p className="muted">
-              3 карточки и кнопка на страницу — потом подключим реальные.
-            </p>
+          <div className="section__head section__head--row">
+            <div>
+              <h2 className="h2">Отзывы</h2>
+              <p className="muted">
+                Реальные отзывы пациентов с Яндекса.
+              </p>
+            </div>
+
+            <Button variant="ghost" onClick={() => location.assign("/reviews")}>
+              Все отзывы
+            </Button>
           </div>
 
           <div className="grid">
-            {[
-              { title: "Анна", text: "“Очень деликатно и понятно объяснили.”" },
-              {
-                title: "Мария",
-                text: "“Комфортно, аккуратно, понравился результат.”",
-              },
-              { title: "Екатерина", text: "“Вернусь ещё, спасибо!”" },
-            ].map((r) => (
-              <PlaceholderCard
-                key={r.title}
-                title={r.title}
-                text={r.text}
-                cta="Смотреть все →"
-                onClick={() => location.assign("/reviews")}
-              />
+            {featuredReviews.map((review) => (
+              <article className="card card--minimal" key={review.id}>
+                <div className="card__top">
+                  <h3 className="h3">{review.name}</h3>
+                  <span className="pill">{review.source}</span>
+                </div>
+
+                <p className="muted">“{review.text}”</p>
+
+                <div className="card__bottom">
+                  <div className="rating">
+                    {"★".repeat(review.rating)}
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Статьи (заглушка) */}
       <section className="section">
         <Container>
           <div className="section__head">
@@ -292,7 +318,6 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Контакты (CTA) */}
       <section className="section section--alt">
         <Container>
           <div className="cta">

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Екатерина Севергина",
+    "rating": 5,
+    "text": "Шикарное место. Наталья Шорина — богиня своего дела. Рекомендую этого шикарного врача.",
+    "source": "Яндекс",
+    "link": "https://yandex.ru/medicine/doctor/shorina_natalya_3aTIuC33iMdGQ",
+    "date": null,
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Елена Денисова",
+    "rating": 5,
+    "text": "Мне повезло попасть к Шориной Наталии, были проблемы с акне. Активно работаем над улучшением качества кожи. Прошло около трёх недель, изменения очень радуют.",
+    "source": "Яндекс",
+    "link": "https://yandex.ru/medicine/doctor/shorina_natalya_3aTIuC33iMdGQ",
+    "date": null,
+    "featured": true
+  },
+  {
+    "id": 3,
+    "name": "Евгения Мельникова",
+    "rating": 5,
+    "text": "Очень понравилась процедура у Наталии Шориной. Делала аппаратную вакуумную чистку. Наталия — настоящий профессионал и очень внимательный косметолог.",
+    "source": "Яндекс",
+    "link": "https://yandex.ru/medicine/doctor/shorina_natalya_3aTIuC33iMdGQ",
+    "date": null,
+    "featured": true
+  },
+  {
+    "id": 4,
+    "name": "Алиса Морозова",
+    "rating": 5,
+    "text": "Регулярно делаю биоревитализацию Jalupro. Очень нравится результат: кожа сияет, исчезает сухость и разглаживаются морщинки. Хожу к Наталье Шориной — замечательный врач и профессионал.",
+    "source": "Яндекс",
+    "link": "https://yandex.ru/medicine/doctor/shorina_natalya_3aTIuC33iMdGQ",
+    "date": null,
+    "featured": true
+  },
+  {
+    "id": 5,
+    "name": "angela s.",
+    "rating": 5,
+    "text": "Хожу в клинику в Крылатском. Была у разных врачей, все понравились, особенно Наталья Сергеевна Шорина. Грамотно, внимательно и результаты очень радуют.",
+    "source": "Яндекс",
+    "link": "https://yandex.ru/medicine/doctor/shorina_natalya_3aTIuC33iMdGQ",
+    "date": null,
+    "featured": false
+  },
+  {
+    "id": 6,
+    "name": "Ирина",
+    "rating": 5,
+    "text": "Наталья Сергеевна хороший врач. С ней приятно общаться, ребёнок чувствовал себя спокойно. Я её рекомендую.",
+    "source": "Яндекс",
+    "link": "https://yandex.ru/medicine/doctor/shorina_natalya_3aTIuC33iMdGQ",
+    "date": null,
+    "featured": false
+  },
+  {
+    "id": 7,
+    "name": "Джамиля",
+    "rating": 5,
+    "text": "Доктор очень внимательная и вежливая. Ребёнок шёл к врачу с боязнью, но Наталия Сергеевна смогла расположить его к себе. Профессионал своего дела.",
+    "source": "Яндекс",
+    "link": "https://yandex.ru/medicine/doctor/shorina_natalya_3aTIuC33iMdGQ",
+    "date": null,
+    "featured": false
+  },
+  {
+    "id": 8,
+    "name": "Константин",
+    "rating": 5,
+    "text": "Мы не первый раз у Натальи Сергеевны. Всё всегда приветливо, профессионально и качественно.",
+    "source": "Яндекс",
+    "link": "https://yandex.ru/medicine/doctor/shorina_natalya_3aTIuC33iMdGQ",
+    "date": null,
+    "featured": false
+  }
+]

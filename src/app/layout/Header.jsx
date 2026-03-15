@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Container from "../../shared/ui/Container.jsx";
-import Button from "../../shared/ui/Button.jsx";
 
 const nav = [
   { to: "/", label: "Главная" },
@@ -23,63 +22,74 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    return () => (document.body.style.overflow = "");
+    document.body.classList.toggle("menu-open", open);
+    return () => {
+      document.body.style.overflow = "";
+      document.body.classList.remove("menu-open");
+    };
   }, [open]);
 
   const close = () => setOpen(false);
 
   return (
-    <header className="header">
-      <Container className="header__inner">
-        <NavLink to="/" className="logo" aria-label="На главную" onClick={close}>
-          <span className="logo__mark" />
-          <span className="logo__text">Наталия Шорина</span>
-        </NavLink>
+    <>
+      <header className="header">
+        <Container className="header__inner">
+          <NavLink to="/" className="logo" aria-label="На главную" onClick={close}>
+            <span className="logo__mark" />
+            <span className="logo__text">Наталия Шорина</span>
+          </NavLink>
 
-        {/* Десктоп-меню */}
-        <nav className="nav nav--desktop" aria-label="Основное меню">
-          {nav.map((i) => (
-            <NavLink
-              key={i.to}
-              to={i.to}
-              className={({ isActive }) => "nav__link" + (isActive ? " is-active" : "")}
+          <nav className="nav nav--desktop" aria-label="Основное меню">
+            {nav.map((i) => (
+              <NavLink
+                key={i.to}
+                to={i.to}
+                className={({ isActive }) => "nav__link" + (isActive ? " is-active" : "")}
+              >
+                {i.label}
+              </NavLink>
+            ))}
+          </nav>
+
+          <div className="header__right">
+            <a
+              className="header__cta"
+              href="https://t.me/dr_shorina"
+              target="_blank"
+              rel="noreferrer"
             >
-              {i.label}
-            </NavLink>
-          ))}
-        </nav>
+              Telegram
+            </a>
 
-        <div className="header__right">
-          <a
-            className="header__cta"
-            href="https://t.me/dr_shorina"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Telegram
-          </a>
+            <button
+              className="burger"
+              type="button"
+              aria-label={open ? "Закрыть меню" : "Открыть меню"}
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span className={"burger__bar" + (open ? " is-open" : "")} />
+              <span className={"burger__bar" + (open ? " is-open" : "")} />
+              <span className={"burger__bar" + (open ? " is-open" : "")} />
+            </button>
+          </div>
+        </Container>
+      </header>
 
-          {/* Бургер (мобила) */}
-          <button
-            className="burger"
-            type="button"
-            aria-label={open ? "Закрыть меню" : "Открыть меню"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className={"burger__bar" + (open ? " is-open" : "")} />
-            <span className={"burger__bar" + (open ? " is-open" : "")} />
-            <span className={"burger__bar" + (open ? " is-open" : "")} />
-          </button>
-        </div>
-      </Container>
-
-      {/* Мобильный оверлей */}
-      <div className={"mobileMenu" + (open ? " is-open" : "")} aria-hidden={!open}>
+      <div
+        id="mobile-navigation"
+        className={"mobileMenu" + (open ? " is-open" : "")}
+        aria-hidden={!open}
+      >
         <div className="mobileMenu__backdrop" onClick={close} />
-        <div className="mobileMenu__panel" role="dialog" aria-label="Меню">
+        <div className="mobileMenu__panel" role="dialog" aria-modal="true" aria-label="Меню">
           <div className="mobileMenu__top">
-            <div className="mobileMenu__title">Меню</div>
+            <div>
+              <div className="mobileMenu__eyebrow">Навигация</div>
+              <div className="mobileMenu__title">Меню</div>
+            </div>
             <button className="mobileMenu__close" onClick={close} aria-label="Закрыть">
               ✕
             </button>
@@ -93,32 +103,26 @@ export default function Header() {
                 onClick={close}
                 className={({ isActive }) => "mobileMenu__link" + (isActive ? " is-active" : "")}
               >
-                {i.label}
+                <span>{i.label}</span>
+                <span className="mobileMenu__linkArrow">→</span>
               </NavLink>
             ))}
           </nav>
 
           <div className="mobileMenu__actions">
-            <Button
-              className="w100"
-              onClick={() => {
-                close();
-                window.open("https://t.me/dr_shorina", "_blank");
-              }}
+            <a
+              className="btn btn--primary w100 mobileMenu__ctaLink"
+              href="https://t.me/dr_shorina"
+              target="_blank"
+              rel="noreferrer"
+              onClick={close}
             >
-              Записаться
-            </Button>
+              Записаться в Telegram
+            </a>
 
-            <Button
-              variant="ghost"
-              className="w100"
-              onClick={() => {
-                close();
-                location.assign("/contacts");
-              }}
-            >
+            <NavLink to="/contacts" className="btn btn--ghost w100" onClick={close}>
               Контакты
-            </Button>
+            </NavLink>
 
             <a
               className="mobileMenu__phone"
@@ -127,11 +131,11 @@ export default function Header() {
               rel="noreferrer"
               onClick={close}
             >
-              @dr_shorina
+              @{"dr_shorina"}
             </a>
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

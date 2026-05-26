@@ -1,0 +1,157 @@
+[
+  {
+    "id": 1,
+    "title": "«Безоперационная» блефаропластика",
+    "category": "Аппаратные методики",
+    "images": [
+      "/works/blepharoplasty-1.jpg",
+      "/works/blepharoplasty-2.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Комплексная коррекция постакне",
+    "category": "Лечение кожи",
+    "images": [
+      "/works/postacne-1.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Коллагеностимуляция",
+    "category": "Инъекционные методики",
+    "images": [
+      "/works/collagen-1.jpg",
+      "/works/collagen-2.jpg",
+      "/works/collagen-3.jpg",
+      "/works/collagen-4.jpg",
+      "/works/collagen-5.jpg",
+      "/works/collagen-6.jpg",
+      "/works/collagen-7.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "PRX-терапия",
+    "category": "Пилинги",
+    "images": [
+      "/works/prx-1.jpg",
+      "/works/prx-2.jpg",
+      "/works/prx-3.jpg",
+      "/works/prx-4.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Фотоомоложение",
+    "category": "Аппаратные методики",
+    "images": [
+      "/works/photoaging-1.jpg",
+      "/works/photoaging-2.jpg",
+      "/works/photoaging-3.jpg",
+      "/works/photoaging-4.jpg"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Монополярный RF-лифтинг",
+    "category": "RF-лифтинг",
+    "images": [
+      "/works/rf-mono-1.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Ботулинотерапия",
+    "category": "Инъекционные методики",
+    "images": [
+      "/works/botox-1.jpg",
+      "/works/botox-2.jpg",
+      "/works/botox-3.jpg",
+      "/works/botox-4.jpg",
+      "/works/botox-5.jpg",
+      "/works/botox-6.jpg",
+      "/works/botox-7.jpg",
+      "/works/botox-8.jpg",
+      "/works/botox-9.jpg",
+      "/works/botox-10.jpg",
+      "/works/botox-11.jpg",
+      "/works/botox-12.jpg",
+      "/works/botox-13.jpg",
+      "/works/botox-14.jpg",
+      "/works/botox-15.jpg",
+      "/works/botox-16.jpg",
+      "/works/botox-17.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Контурная пластика",
+    "category": "Инъекционные методики",
+    "images": [
+      "/works/contour-1.jpg",
+      "/works/contour-2.jpg",
+      "/works/contour-3.jpg",
+      "/works/contour-4.jpg",
+      "/works/contour-5.jpg",
+      "/works/contour-6.jpg",
+      "/works/contour-7.jpg",
+      "/works/contour-8.jpg",
+      "/works/contour-9.jpg",
+      "/works/contour-10.jpg",
+      "/works/contour-11.jpg",
+      "/works/contour-12.jpg",
+      "/works/contour-13.jpg",
+      "/works/contour-14.jpg",
+      "/works/contour-15.jpg"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Игольчатый RF лифтинг",
+    "category": "RF-лифтинг",
+    "images": [
+      "/works/rf-needle-1.jpg",
+      "/works/rf-needle-2.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Работа с локальными жировыми отложениями",
+    "category": "Коррекция тела",
+    "images": [
+      "/works/fat-local-1.jpg",
+      "/works/fat-local-2.jpg",
+      "/works/fat-local-3.jpg",
+      "/works/fat-local-4.jpg",
+      "/works/fat-local-5.jpg"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Игольчатый RF",
+    "category": "RF-лифтинг",
+    "images": [
+      "/works/rf-1.jpg"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Ультразвуковой смас-лифтинг",
+    "category": "SMAS-лифтинг",
+    "images": [
+      "/works/smas-1.jpg",
+      "/works/smas-2.jpg",
+      "/works/smas-3.jpg",
+      "/works/smas-4.jpg",
+      "/works/smas-5.jpg",
+      "/works/smas-6.jpg",
+      "/works/smas-7.jpg",
+      "/works/smas-8.jpg",
+      "/works/smas-9.jpg",
+      "/works/smas-10.jpg",
+      "/works/smas-11.jpg",
+      "/works/smas-12.jpg"
+    ]
+  }
+]

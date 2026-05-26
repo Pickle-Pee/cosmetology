@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Container from "../shared/ui/Container.jsx";
 import Button from "../shared/ui/Button.jsx";
 import Carousel from "../shared/ui/Carousel.jsx";
 import reviews from "../data/reviews.json";
+import beforeAfter from "../data/beforeAfter.json";
 
 const slides = [
   {
@@ -39,6 +40,8 @@ const certificates = [
   { src: "/certificates/cert-8.jpg", title: "Сертификат тренера" },
 ];
 
+
+
 function PlaceholderCard({ title, text, cta = "Подробнее →", onClick }) {
   return (
     <article className="card card--minimal">
@@ -60,16 +63,65 @@ export default function Home() {
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
-  const featuredReviews = reviews.filter((review) => review.featured).slice(0, 2);
+  const featuredReviews = reviews
+    .filter((review) => review.featured)
+    .slice(0, 2);
+
+  const workCategories = [
+    ...new Set(beforeAfter.map((item) => item.category)),
+  ];
+
+  const [activeWorkCategory, setActiveWorkCategory] = useState(
+    workCategories[0]
+  );
+
+  const filteredWorks = beforeAfter.filter(
+    (item) => item.category === activeWorkCategory
+  );
+
+  const filteredWorkImages = beforeAfter
+    .filter((item) => item.category === activeWorkCategory)
+    .flatMap((item) =>
+      item.images.map((image, index) => ({
+        id: `${item.id}-${index}`,
+        title: item.title,
+        category: item.category,
+        image,
+        count: item.images.length,
+      }))
+    );
+
+  const worksCarouselRef = useRef(null);
+
+  const scrollWorks = (direction) => {
+    if (!worksCarouselRef.current) return;
+
+    worksCarouselRef.current.scrollBy({
+      left: direction === "next" ? 340 : -340,
+      behavior: "smooth",
+    });
+  };
+
+  const shouldShowWorkArrows = filteredWorkImages.length > 1;
 
   useEffect(() => {
     const isLocked = isCertificatesOpen || !!selectedCertificate;
     document.body.style.overflow = isLocked ? "hidden" : "";
 
+
     return () => {
       document.body.style.overflow = "";
     };
   }, [isCertificatesOpen, selectedCertificate]);
+
+  useEffect(() => {
+    if (!worksCarouselRef.current) return;
+
+    worksCarouselRef.current.scrollTo({
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [activeWorkCategory]);
 
   const openCertificateViewer = (item) => {
     setIsCertificatesOpen(false);
@@ -175,6 +227,78 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section">
+        <Container>
+          <div className="section__head section__head--row">
+            <div>
+              <h2 className="h2">До / После</h2>
+              <p className="muted">
+                Примеры результатов процедур. Все изображения представлены в формате одной фотографии.
+              </p>
+            </div>
+
+            {shouldShowWorkArrows && (
+              <div className="carouselControls">
+                <button
+                  type="button"
+                  className="carouselArrow"
+                  onClick={() => scrollWorks("prev")}
+                  aria-label="Предыдущие работы"
+                >
+                  ←
+                </button>
+
+                <button
+                  type="button"
+                  className="carouselArrow"
+                  onClick={() => scrollWorks("next")}
+                  aria-label="Следующие работы"
+                >
+                  →
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div className="worksTabs" aria-label="Категории работ">
+            {workCategories.map((category) => (
+              <button
+                key={category}
+                type="button"
+                className={
+                  activeWorkCategory === category
+                    ? "worksTab worksTab--active"
+                    : "worksTab"
+                }
+                onClick={() => setActiveWorkCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <div className="worksCarousel" ref={worksCarouselRef}>
+            {filteredWorkImages.map((item) => (
+              <article className="workCard" key={item.id}>
+                <div className="workCard__imageWrap">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="workCard__image"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div className="workCard__body">
+                  <span className="pill">{item.category}</span>
+                  <h3 className="h3">{item.title}</h3>
+                </div>
+              </article>
+            ))}
           </div>
         </Container>
       </section>

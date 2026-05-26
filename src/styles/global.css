@@ -21,7 +21,7 @@
   --border-strong: #ddd6ce;
 
   --shadow-sm: 0 8px 20px rgba(38, 52, 50, 0.06);
-  --shadow: 0 16px 36px rgba(38, 52, 50, 0.08);
+  --shadow: 0 8px 18px rgba(38, 52, 50, 0.08);
   --shadow-lg: 0 24px 60px rgba(38, 52, 50, 0.12);
 
   --radius-sm: 14px;
@@ -377,6 +377,115 @@ img {
   object-fit: contain;
   object-position: bottom center;
   display: block;
+}
+
+/* Before After Carousel */
+.worksTabs {
+  display: flex;
+  gap: 10px;
+  margin: 22px 0 24px;
+  overflow-x: auto;
+  padding: 4px 18px 6px 2px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.worksTabs::-webkit-scrollbar {
+  display: none;
+}
+
+.worksTab {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.worksTab--active {
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
+}
+
+.worksCarousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 360px);
+  gap: 18px;
+  overflow-x: auto;
+  padding: 4px 2px 14px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.worksCarousel::-webkit-scrollbar {
+  display: none;
+}
+
+.workCard {
+  scroll-snap-align: start;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--card);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.workCard__imageWrap {
+  aspect-ratio: 4 / 5;
+  background: var(--soft);
+  overflow: hidden;
+}
+
+.workCard__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.workCard__body {
+  padding: 16px;
+}
+
+.workCard__body .h3 {
+  margin-top: 10px;
+}
+
+.carouselControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.carouselArrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--text);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(17, 31, 35, 0.08);
+  transition: 0.2s ease;
+}
+
+.carouselArrow:hover {
+  transform: translateY(-1px);
+  background: var(--text);
+  color: #fff;
 }
 
 /* Mobile menu */
@@ -1574,6 +1683,10 @@ img {
     width: min(100% - 24px, var(--container));
   }
 
+  .carouselControls {
+    display: none;
+  }
+
   .header__inner {
     padding: 10px 0;
     min-height: 64px;
@@ -1638,6 +1751,49 @@ img {
   .carousel__text {
     font-size: 15px;
     max-width: 38ch;
+  }
+
+  .worksTabs {
+    gap: 8px;
+    margin: 16px -16px 18px;
+    padding: 0 24px 6px 16px;
+  }
+
+  .worksTab {
+    padding: 9px 14px;
+    font-size: 13px;
+  }
+
+  .worksCarousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 86%;
+    justify-content: start;
+
+    gap: 14px;
+
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+
+    padding: 2px 18px 14px;
+    margin: 0 -16px;
+
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .worksCarousel::before,
+  .worksCarousel::after {
+    content: "";
+    width: 2px;
+  }
+
+  .workCard {
+    scroll-snap-align: center;
+  }
+
+  .workCard__body {
+    padding: 14px;
   }
 
   .aboutHero {

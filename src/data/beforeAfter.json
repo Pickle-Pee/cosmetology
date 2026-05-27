@@ -1,7 +1,6 @@
 [
   {
     "id": 1,
-    "title": "«Безоперационная» блефаропластика",
     "category": "Аппаратные методики",
     "images": [
       "/works/blepharoplasty-1.jpg",
@@ -10,7 +9,6 @@
   },
   {
     "id": 2,
-    "title": "Комплексная коррекция постакне",
     "category": "Лечение кожи",
     "images": [
       "/works/postacne-1.jpg"
@@ -18,7 +16,6 @@
   },
   {
     "id": 3,
-    "title": "Коллагеностимуляция",
     "category": "Инъекционные методики",
     "images": [
       "/works/collagen-1.jpg",
@@ -32,7 +29,6 @@
   },
   {
     "id": 4,
-    "title": "PRX-терапия",
     "category": "Пилинги",
     "images": [
       "/works/prx-1.jpg",
@@ -43,7 +39,6 @@
   },
   {
     "id": 5,
-    "title": "Фотоомоложение",
     "category": "Аппаратные методики",
     "images": [
       "/works/photoaging-1.jpg",
@@ -54,7 +49,6 @@
   },
   {
     "id": 6,
-    "title": "Монополярный RF-лифтинг",
     "category": "RF-лифтинг",
     "images": [
       "/works/rf-mono-1.jpg"
@@ -62,7 +56,6 @@
   },
   {
     "id": 7,
-    "title": "Ботулинотерапия",
     "category": "Инъекционные методики",
     "images": [
       "/works/botox-1.jpg",
@@ -86,7 +79,6 @@
   },
   {
     "id": 8,
-    "title": "Контурная пластика",
     "category": "Инъекционные методики",
     "images": [
       "/works/contour-1.jpg",
@@ -108,7 +100,6 @@
   },
   {
     "id": 9,
-    "title": "Игольчатый RF лифтинг",
     "category": "RF-лифтинг",
     "images": [
       "/works/rf-needle-1.jpg",
@@ -117,7 +108,6 @@
   },
   {
     "id": 10,
-    "title": "Работа с локальными жировыми отложениями",
     "category": "Коррекция тела",
     "images": [
       "/works/fat-local-1.jpg",
@@ -129,7 +119,6 @@
   },
   {
     "id": 11,
-    "title": "Игольчатый RF",
     "category": "RF-лифтинг",
     "images": [
       "/works/rf-1.jpg"
@@ -137,7 +126,6 @@
   },
   {
     "id": 12,
-    "title": "Ультразвуковой смас-лифтинг",
     "category": "SMAS-лифтинг",
     "images": [
       "/works/smas-1.jpg",
@@ -152,6 +140,27 @@
       "/works/smas-10.jpg",
       "/works/smas-11.jpg",
       "/works/smas-12.jpg"
+    ]
+  },
+  {
+    "id": 13,
+    "category": "Эстетическая коррекция",
+    "images": [
+      "/works/aesthetic-1.jpg",
+      "/works/aesthetic-2.jpg",
+      "/works/aesthetic-3.jpg",
+      "/works/aesthetic-4.jpg",
+      "/works/aesthetic-5.jpg",
+      "/works/aesthetic-6.jpg",
+      "/works/aesthetic-7.jpg",
+      "/works/aesthetic-8.jpg",
+      "/works/aesthetic-9.jpg",
+      "/works/aesthetic-10.jpg",
+      "/works/aesthetic-11.jpg",
+      "/works/aesthetic-12.jpg",
+      "/works/aesthetic-13.jpg",
+      "/works/aesthetic-14.jpg",
+      "/works/aesthetic-15.jpg"
     ]
   }
 ]

@@ -84,7 +84,7 @@ export default function Home() {
     .flatMap((item) =>
       item.images.map((image, index) => ({
         id: `${item.id}-${index}`,
-        title: item.title,
+        // title: item.title,
         category: item.category,
         image,
         count: item.images.length,
@@ -167,6 +167,12 @@ export default function Home() {
                 </div>
 
                 <p className="aboutHero__text">
+                  Международный спикер и <b>Key Opinion Leader (KOL)</b>,
+                  сотрудничающий с ведущими мировыми и российскими эстетическими
+                  брендами — <b>Juvelook & Lenisna, Alma Lasers, SHENB, PRX-T33 / WiQo</b> и др.
+                </p>
+
+                <p className="aboutHero__text">
                   Тренер по аппаратным и инъекционным методикам в косметологии.
                   Сертифицированный тренер брендов <b>Juvelook & Lenisna, PRX-T33, Repart</b>.
                 </p>
@@ -177,29 +183,32 @@ export default function Home() {
                 </p>
 
                 <p className="aboutHero__text">
-                  Автор публикаций в изданиях: <b>1NEP, Облик, Lady.Mail, Живи, Улыбка радуги,
-                    SB.BY, Комсомольская правда, ОК</b> и других.
+                  Автор публикаций в изданиях:
+                  <b> Forbes, 1NEP, Облик, Mail.ru, Комсомольская правда, SB.BY</b> и других.
                 </p>
 
                 <p className="aboutHero__text">
-                  Член Национального общества мезотерапии и РОСМЕДОБР.
-                  Финалист проекта <b>#DOCTORSTAR</b>, победитель <b>#TOPBEAUTYDOCTOR</b>.
+                  Член общества мезотерапии и <b>РОСМЕДОБР</b>.
+                  Финалист проекта <b>Doctor Star</b>,
+                  победитель <b>TopBeautyDoctor</b>.
                 </p>
 
                 <p className="aboutHero__text">
-                  <b>Врачую:</b> делаю женщин и мужчин красивее, моложе и ухоженнее.
+                  <b>Врачую:</b> делаю женщин и мужчин красивее,
+                  моложе и ухоженнее.
                 </p>
 
                 <p className="aboutHero__text">
-                  <b>Делюсь опытом:</b> обучаю врачей-косметологов по России и СНГ.
+                  <b>Делюсь опытом:</b> обучаю врачей-косметологов
+                  по России и СНГ.
                 </p>
 
                 <div className="badges aboutHero__badges">
                   <span className="badge">Juvelook & Lenisna</span>
-                  <span className="badge">PRX-T33</span>
-                  <span className="badge">Repart</span>
-                  <span className="badge">#DOCTORSTAR</span>
-                  <span className="badge">#TOPBEAUTYDOCTOR</span>
+                  <span className="badge">Alma Lasers</span>
+                  <span className="badge">PRX-T33 / WiQo</span>
+                  <span className="badge">Doctor Star</span>
+                  <span className="badge">TopBeautyDoctor</span>
                 </div>
 
                 <div className="aboutHero__actions">
@@ -295,7 +304,7 @@ export default function Home() {
 
                 <div className="workCard__body">
                   <span className="pill">{item.category}</span>
-                  <h3 className="h3">{item.title}</h3>
+                  {/* <h3 className="h3">{item.title}</h3> */}
                 </div>
               </article>
             ))}

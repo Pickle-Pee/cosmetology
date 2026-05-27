@@ -245,9 +245,9 @@ export default function Home() {
           <div className="section__head section__head--row">
             <div>
               <h2 className="h2">До / После</h2>
-              <p className="muted">
+              {/* <p className="muted">
                 Примеры результатов процедур.
-              </p>
+              </p> */}
             </div>
 
             {shouldShowWorkArrows && (
@@ -316,11 +316,11 @@ export default function Home() {
         <Container>
           <div className="section__head">
             <h2 className="h2">Дипломы и сертификаты</h2>
-            <p className="muted">
+            {/* <p className="muted">
               Подтверждённая медицинская квалификация, профильное обучение и
               регулярное повышение квалификации в области косметологии,
               инъекционных и аппаратных методик.
-            </p>
+            </p> */}
           </div>
 
           <div className="certGrid certGrid--preview">
@@ -359,9 +359,9 @@ export default function Home() {
           <div className="section__head section__head--row">
             <div>
               <h2 className="h2">Услуги</h2>
-              <p className="muted">
+              {/* <p className="muted">
                 Основные направления и отдельная страница с актуальным прайсом.
-              </p>
+              </p> */}
             </div>
 
             <Button variant="ghost" onClick={() => location.assign("/prices")}>
@@ -395,9 +395,9 @@ export default function Home() {
           <div className="section__head section__head--row">
             <div>
               <h2 className="h2">Отзывы</h2>
-              <p className="muted">
+              {/* <p className="muted">
                 Реальные отзывы пациентов с Яндекса.
-              </p>
+              </p> */}
             </div>
 
             <Button variant="ghost" onClick={() => location.assign("/reviews")}>
@@ -430,7 +430,7 @@ export default function Home() {
         <Container>
           <div className="section__head">
             <h2 className="h2">Статьи</h2>
-            <p className="muted">Мини-блог: 3 превью и переход.</p>
+            {/* <p className="muted">Мини-блог: 3 превью и переход.</p> */}
           </div>
 
           <div className="grid">
@@ -457,8 +457,7 @@ export default function Home() {
             <div>
               <h2 className="h2">Запись и контакты</h2>
               <p className="muted">
-                Телефон, мессенджеры, адрес — всё компактно на странице
-                контактов.
+                Напишите в Telegram, чтобы уточнить показания, объём процедуры и стоимость в вашем случае.
               </p>
             </div>
             <Button onClick={() => location.assign("/contacts")}>

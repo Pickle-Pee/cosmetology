@@ -41,11 +41,11 @@ export default function Contacts() {
             </div>
           </div>
 
-          <div className="card map">
+          {/* <div className="card map">
             <div className="map__stub">
               Адрес приёма и карту можно добавить следующим этапом
             </div>
-          </div>
+          </div> */}
         </div>
       </Container>
     </section>

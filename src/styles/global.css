@@ -385,13 +385,24 @@ img {
   gap: 10px;
   margin: 22px 0 24px;
   overflow-x: auto;
-  padding: 4px 18px 6px 2px;
-  scrollbar-width: none;
+  overflow-y: hidden;
+  padding: 4px 28px 8px 2px;
+  /* scrollbar-width: none; */
+  scrollbar-color: rgba(31, 42, 42, 0.22) transparent;
   -webkit-overflow-scrolling: touch;
 }
 
 .worksTabs::-webkit-scrollbar {
   display: none;
+}
+
+.worksTabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.worksTabs::-webkit-scrollbar-thumb {
+  background: rgba(31, 42, 42, 0.18);
+  border-radius: 999px;
 }
 
 .worksTab {

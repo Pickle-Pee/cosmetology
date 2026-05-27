@@ -4,6 +4,8 @@ import Button from "../shared/ui/Button.jsx";
 import Carousel from "../shared/ui/Carousel.jsx";
 import reviews from "../data/reviews.json";
 import beforeAfter from "../data/beforeAfter.json";
+import { Link } from "react-router-dom";
+import articles from "../data/articles.json";
 
 const slides = [
   {
@@ -66,6 +68,8 @@ export default function Home() {
   const featuredReviews = reviews
     .filter((review) => review.featured)
     .slice(0, 2);
+
+  const featuredArticles = articles.slice(0, 2);
 
   const workCategories = [
     ...new Set(beforeAfter.map((item) => item.category)),
@@ -428,25 +432,68 @@ export default function Home() {
 
       <section className="section">
         <Container>
-          <div className="section__head">
-            <h2 className="h2">Статьи</h2>
-            {/* <p className="muted">Мини-блог: 3 превью и переход.</p> */}
+          <div className="section__head section__head--row">
+            <div>
+              <h2 className="h2">Статьи</h2>
+              <p className="muted">
+                Авторские публикации о косметологии, уходе за кожей и современных процедурах.
+              </p>
+            </div>
+
+            <Button variant="ghost" onClick={() => location.assign("/articles")}>
+              Все статьи
+            </Button>
           </div>
 
-          <div className="grid">
-            {[
-              "Как выбрать уход по типу кожи",
-              "Пилинги: кому подходят",
-              "SPF каждый день — зачем",
-            ].map((t) => (
-              <PlaceholderCard
-                key={t}
-                title={t}
-                text="Короткий анонс на 1–2 строки."
-                cta="Читать →"
-                onClick={() => location.assign("/articles")}
-              />
-            ))}
+          <div className="articlesGrid articlesGrid--preview">
+            {featuredArticles.map((article) => {
+              const title = article.title || article.heading || article.name;
+              const excerpt =
+                article.excerpt || article.announcement || article.description;
+              const image = article.image || article.preview || article.images?.[0];
+
+              return (
+                <article className="articleCard" key={article.id}>
+                  <Link
+                    to={`/articles/${article.slug}`}
+                    className="articleCard__imageWrap"
+                  >
+                    <img
+                      src={image}
+                      alt={title}
+                      className="articleCard__image"
+                      loading="lazy"
+                    />
+                  </Link>
+
+                  <div className="articleCard__body">
+                    <div className="articleCard__meta">
+                      <span className="pill">{article.category}</span>
+                      {article.readTime && <span>{article.readTime}</span>}
+                    </div>
+
+                    <h3 className="articleCard__title">
+                      <Link to={`/articles/${article.slug}`}>
+                        {title}
+                      </Link>
+                    </h3>
+
+                    {excerpt && (
+                      <p className="articleCard__excerpt">
+                        {excerpt}
+                      </p>
+                    )}
+
+                    <Link
+                      to={`/articles/${article.slug}`}
+                      className="articleCard__link"
+                    >
+                      Читать статью
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </Container>
       </section>

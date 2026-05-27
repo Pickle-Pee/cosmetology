@@ -9,22 +9,22 @@ const slides = [
   {
     id: "s1",
     kicker: "Косметология • Уход • Эстетика",
-    title: "Мягкий подход\nи понятный результат",
-    text: "Сайт-визитка: карусель, блок о враче и несколько разделов-заглушек.",
+    title: "Профессиональная косметология\nс понятным результатом",
+    text: "Индивидуальный подбор процедур, деликатный подход и внимательное сопровождение на каждом этапе.",
     image: "",
   },
   {
     id: "s2",
     kicker: "Индивидуально",
     title: "План ухода\nпод вашу кожу",
-    text: "Диагностика → рекомендации → процедуры по показаниям.",
+    text: "Диагностика, рекомендации и процедуры по показаниям — без лишних назначений и с заботой о безопасности.",
     image: "",
   },
   {
     id: "s3",
     kicker: "Комфорт",
     title: "Спокойная эстетика\nбез лишнего шума",
-    text: "Минимализм, аккуратная типографика, быстрый контакт.",
+    text: "Современные аппаратные и инъекционные методики для естественного, ухоженного результата.",
     image: "",
   },
 ];
@@ -40,14 +40,45 @@ const certificates = [
   { src: "/certificates/cert-8.jpg", title: "Сертификат тренера" },
 ];
 
+const servicePreview = [
+  {
+    title: "Консультация",
+    text: "Оценка состояния кожи, сбор анамнеза и подбор индивидуального плана процедур.",
+  },
+  {
+    title: "Аппаратные методики",
+    text: "RF-лифтинг, SMAS-лифтинг, фотоомоложение и другие технологии по показаниям.",
+  },
+  {
+    title: "Инъекционные методики",
+    text: "Ботулинотерапия, коллагеностимуляция, контурная пластика и биоревитализация.",
+  },
+  {
+    title: "Уход и восстановление кожи",
+    text: "Чистки, пилинги, PRX-терапия и комплексная коррекция качества кожи.",
+  },
+];
 
+const articlePreview = [
+  {
+    title: "Как выбрать уход по типу кожи",
+    text: "Коротко о том, почему домашний уход должен учитывать состояние кожи, сезон и активные процедуры.",
+  },
+  {
+    title: "Пилинги: кому подходят",
+    text: "Когда пилинги помогают улучшить тон, рельеф и качество кожи, а когда процедуру лучше отложить.",
+  },
+  {
+    title: "SPF каждый день — зачем",
+    text: "Почему фотозащита важна не только летом и как она помогает сохранить результат процедур.",
+  },
+];
 
-function PlaceholderCard({ title, text, cta = "Подробнее →", onClick }) {
+function PreviewCard({ title, text, cta = "Подробнее →", onClick }) {
   return (
     <article className="card card--minimal">
       <div className="card__top">
         <h3 className="h3">{title}</h3>
-        <span className="pill pill--neutral">заглушка</span>
       </div>
       <p className="muted">{text}</p>
       <div className="card__bottom">
@@ -75,19 +106,13 @@ export default function Home() {
     workCategories[0]
   );
 
-  const filteredWorks = beforeAfter.filter(
-    (item) => item.category === activeWorkCategory
-  );
-
   const filteredWorkImages = beforeAfter
     .filter((item) => item.category === activeWorkCategory)
     .flatMap((item) =>
       item.images.map((image, index) => ({
         id: `${item.id}-${index}`,
-        // title: item.title,
         category: item.category,
         image,
-        count: item.images.length,
       }))
     );
 
@@ -107,7 +132,6 @@ export default function Home() {
   useEffect(() => {
     const isLocked = isCertificatesOpen || !!selectedCertificate;
     document.body.style.overflow = isLocked ? "hidden" : "";
-
 
     return () => {
       document.body.style.overflow = "";
@@ -154,9 +178,7 @@ export default function Home() {
               <div className="aboutHeroContent">
                 <div className="kicker aboutHero__kicker">О враче</div>
 
-                <h1 className="aboutHero__title">
-                  Наталия Шорина
-                </h1>
+                <h1 className="aboutHero__title">Наталия Шорина</h1>
 
                 <span className="aboutHero__experience">
                   10+ лет практики в эстетической медицине
@@ -296,7 +318,7 @@ export default function Home() {
                 <div className="workCard__imageWrap">
                   <img
                     src={item.image}
-                    alt={item.title}
+                    alt={item.category}
                     className="workCard__image"
                     loading="lazy"
                   />
@@ -304,7 +326,6 @@ export default function Home() {
 
                 <div className="workCard__body">
                   <span className="pill">{item.category}</span>
-                  {/* <h3 className="h3">{item.title}</h3> */}
                 </div>
               </article>
             ))}
@@ -360,7 +381,7 @@ export default function Home() {
             <div>
               <h2 className="h2">Услуги</h2>
               <p className="muted">
-                Основные направления и отдельная страница с актуальным прайсом.
+                Основные направления работы и актуальная стоимость процедур.
               </p>
             </div>
 
@@ -370,19 +391,11 @@ export default function Home() {
           </div>
 
           <div className="grid">
-            {[
-              { title: "Консультация", text: "Диагностика и подбор плана ухода." },
-              { title: "Чистка лица", text: "Атравматичная / ультразвуковая." },
-              { title: "Пилинги", text: "По показаниям, сезонность и уход." },
-              {
-                title: "Инъекционные методики",
-                text: "Пример карточки под направление.",
-              },
-            ].map((c) => (
-              <PlaceholderCard
-                key={c.title}
-                title={c.title}
-                text={c.text}
+            {servicePreview.map((item) => (
+              <PreviewCard
+                key={item.title}
+                title={item.title}
+                text={item.text}
                 onClick={() => location.assign("/services")}
               />
             ))}
@@ -396,7 +409,7 @@ export default function Home() {
             <div>
               <h2 className="h2">Отзывы</h2>
               <p className="muted">
-                Реальные отзывы пациентов с Яндекса.
+                Мнения пациентов о консультациях, процедурах и результате.
               </p>
             </div>
 
@@ -428,21 +441,25 @@ export default function Home() {
 
       <section className="section">
         <Container>
-          <div className="section__head">
-            <h2 className="h2">Статьи</h2>
-            <p className="muted">Мини-блог: 3 превью и переход.</p>
+          <div className="section__head section__head--row">
+            <div>
+              <h2 className="h2">Статьи</h2>
+              <p className="muted">
+                Короткие материалы о косметологии, уходе и подготовке к процедурам.
+              </p>
+            </div>
+
+            <Button variant="ghost" onClick={() => location.assign("/articles")}>
+              Все статьи
+            </Button>
           </div>
 
           <div className="grid">
-            {[
-              "Как выбрать уход по типу кожи",
-              "Пилинги: кому подходят",
-              "SPF каждый день — зачем",
-            ].map((t) => (
-              <PlaceholderCard
-                key={t}
-                title={t}
-                text="Короткий анонс на 1–2 строки."
+            {articlePreview.map((item) => (
+              <PreviewCard
+                key={item.title}
+                title={item.title}
+                text={item.text}
                 cta="Читать →"
                 onClick={() => location.assign("/articles")}
               />
@@ -457,8 +474,7 @@ export default function Home() {
             <div>
               <h2 className="h2">Запись и контакты</h2>
               <p className="muted">
-                Телефон, мессенджеры, адрес — всё компактно на странице
-                контактов.
+                Для записи на консультацию и процедуры напишите в Telegram.
               </p>
             </div>
             <Button onClick={() => location.assign("/contacts")}>

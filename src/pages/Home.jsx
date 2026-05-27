@@ -47,7 +47,7 @@ function PlaceholderCard({ title, text, cta = "Подробнее →", onClick 
     <article className="card card--minimal">
       <div className="card__top">
         <h3 className="h3">{title}</h3>
-        <span className="pill pill--neutral">заглушка</span>
+        {/* <span className="pill pill--neutral">заглушка</span> */}
       </div>
       <p className="muted">{text}</p>
       <div className="card__bottom">

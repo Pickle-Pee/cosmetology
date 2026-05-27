@@ -440,9 +440,9 @@ export default function Home() {
               </p>
             </div>
 
-            <Button variant="ghost" onClick={() => location.assign("/articles")}>
+            <Link to="/articles" className="btn btn--ghost">
               Все статьи
-            </Button>
+            </Link>
           </div>
 
           <div className="articlesGrid articlesGrid--preview">

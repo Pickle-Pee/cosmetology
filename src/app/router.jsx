@@ -6,6 +6,7 @@ import Articles from "../pages/Articles.jsx";
 import Reviews from "../pages/Reviews.jsx";
 import Contacts from "../pages/Contacts.jsx";
 import NotFound from "../pages/NotFound.jsx";
+import ArticlePage from "../pages/ArticlePage.jsx";
 
 export const routes = [
   {
@@ -18,6 +19,7 @@ export const routes = [
       { path: "/reviews", element: <Reviews /> },
       { path: "/contacts", element: <Contacts /> },
       { path: "*", element: <NotFound /> },
+      { path: "/articles/:slug", element: <ArticlePage /> },
     ],
   },
 ];

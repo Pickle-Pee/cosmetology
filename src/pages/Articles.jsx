@@ -1,11 +1,7 @@
+import { Link } from "react-router-dom";
 import Container from "../shared/ui/Container.jsx";
 import PageIntro from "../shared/ui/PageIntro.jsx";
-
-const articles = [
-  "Как выбрать уход по типу кожи",
-  "Пилинги: кому и когда подходят",
-  "SPF: почему важен круглый год",
-];
+import articles from "../data/articles.json";
 
 export default function Articles() {
   return (
@@ -13,20 +9,58 @@ export default function Articles() {
       <Container>
         <PageIntro
           kicker="Статьи"
-          title="Полезные материалы"
-          text="Блог о домашнем уходе, процедурах, противопоказаниях и ответах на частые вопросы."
+          title="Материалы о косметологии"
+          text="Авторские публикации Наталии Шориной о процедурах, уходе за кожей и восстановлении."
         />
 
-        <div className="grid">
-          {articles.map((title) => (
-            <article className="card" key={title}>
-              <h3 className="h3">{title}</h3>
-              <p className="muted">Короткий анонс статьи на 1–2 строки.</p>
-              <button className="link" onClick={() => alert("Откроем страницу статьи позже")}>
-                Читать →
-              </button>
-            </article>
-          ))}
+        <div className="articlesGrid">
+          {articles.map((article) => {
+            const title = article.title || article.heading || article.name;
+            const excerpt = article.excerpt || article.announcement || article.description;
+            const image = article.image || article.preview || article.images?.[0];
+
+            return (
+              <article className="articleCard" key={article.id}>
+                <Link
+                  to={`/articles/${article.slug}`}
+                  className="articleCard__imageWrap"
+                >
+                  <img
+                    src={image}
+                    alt={title}
+                    className="articleCard__image"
+                    loading="lazy"
+                  />
+                </Link>
+
+                <div className="articleCard__body">
+                  <div className="articleCard__meta">
+                    <span className="pill">{article.category}</span>
+                    {article.readTime && <span>{article.readTime}</span>}
+                  </div>
+
+                  <h3 className="articleCard__title">
+                    <Link to={`/articles/${article.slug}`}>
+                      {title}
+                    </Link>
+                  </h3>
+
+                  {excerpt && (
+                    <p className="articleCard__excerpt">
+                      {excerpt}
+                    </p>
+                  )}
+
+                  <Link
+                    to={`/articles/${article.slug}`}
+                    className="articleCard__link"
+                  >
+                    Читать статью
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </Container>
     </section>

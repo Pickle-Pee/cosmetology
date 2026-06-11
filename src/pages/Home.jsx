@@ -1,11 +1,35 @@
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import Container from "../shared/ui/Container.jsx";
 import Button from "../shared/ui/Button.jsx";
+import Carousel from "../shared/ui/Carousel.jsx";
 import reviews from "../data/reviews.json";
 import beforeAfter from "../data/beforeAfter.json";
+import { Link } from "react-router-dom";
 import articles from "../data/articles.json";
-import Carousel from "../shared/ui/Carousel.jsx";
+
+const slides = [
+  {
+    id: "s1",
+    kicker: "Косметология • Уход • Эстетика",
+    title: "Профессиональная косметология\nс понятным результатом",
+    text: "Индивидуальный подбор процедур, деликатный подход и внимательное сопровождение на каждом этапе.",
+    image: "",
+  },
+  {
+    id: "s2",
+    kicker: "Индивидуально",
+    title: "План ухода\nпод вашу кожу",
+    text: "Диагностика, рекомендации и процедуры по показаниям — без лишних назначений и с заботой о безопасности.",
+    image: "",
+  },
+  {
+    id: "s3",
+    kicker: "Комфорт",
+    title: "Спокойная эстетика\nбез лишнего шума",
+    text: "Современные аппаратные и инъекционные методики для естественного, ухоженного результата.",
+    image: "",
+  },
+];
 
 const certificates = [
   { src: "/certificates/cert-1.jpg", title: "Диплом" },
@@ -18,56 +42,13 @@ const certificates = [
   { src: "/certificates/cert-8.jpg", title: "Сертификат тренера" },
 ];
 
-// const slides = [
-//   {
-//     id: "s1",
-//     kicker: "Косметология • Уход • Эстетика",
-//     title: "Профессиональная косметология\nс понятным результатом",
-//     text: "Индивидуальный подбор процедур, деликатный подход и внимательное сопровождение на каждом этапе.",
-//     image: "",
-//   },
-//   {
-//     id: "s2",
-//     kicker: "Индивидуально",
-//     title: "План ухода\nпод вашу кожу",
-//     text: "Диагностика, рекомендации и процедуры по показаниям — без лишних назначений и с заботой о безопасности.",
-//     image: "",
-//   },
-//   {
-//     id: "s3",
-//     kicker: "Комфорт",
-//     title: "Спокойная эстетика\nбез лишнего шума",
-//     text: "Современные аппаратные и инъекционные методики для естественного, ухоженного результата.",
-//     image: "",
-//   },
-// ];
-
-const serviceCards = [
-  {
-    title: "Консультация",
-    text: "Разбор запроса, состояния кожи и понятный план дальнейших действий.",
-  },
-  {
-    title: "Аппаратные методики",
-    text: "Работа с качеством кожи, лифтингом, овалом лица и локальными зонами.",
-  },
-  {
-    title: "Инъекционные методики",
-    text: "Инъекционные методики для естественного и гармоничного результата.",
-  },
-  {
-    title: "Уход и восстановление",
-    text: "Чистки, пилинги, PRX-терапия и восстановительные протоколы по показаниям.",
-  },
-];
-
 const doctorFacts = [
   {
     title: "Врач-дерматокосметолог",
     text: "Более 10 лет практики в эстетической медицине",
   },
   {
-    title: "Тренер для врачей",
+    title: "Тренер для врачей-косметологов",
     text: "По аппаратным и инъекционным методикам",
   },
   {
@@ -75,25 +56,23 @@ const doctorFacts = [
     text: "Участник и эксперт профессиональных конгрессов",
   },
   {
-    title: "Автор публикаций",
+    title: "Автор экспертных публикаций",
     text: "Материалы о здоровье кожи и современной косметологии",
   },
 ];
 
-function InfoCard({ title, text, cta = "Подробнее →", onClick }) {
+function PlaceholderCard({ title, text, cta = "Подробнее →", onClick }) {
   return (
     <article className="card card--minimal">
       <div className="card__top">
         <h3 className="h3">{title}</h3>
       </div>
       <p className="muted">{text}</p>
-      {onClick && (
-        <div className="card__bottom">
-          <button className="link" onClick={onClick}>
-            {cta}
-          </button>
-        </div>
-      )}
+      <div className="card__bottom">
+        <button className="link" onClick={onClick}>
+          {cta}
+        </button>
+      </div>
     </article>
   );
 }
@@ -136,6 +115,7 @@ export default function Home() {
         id: `${item.id}-${index}`,
         category: item.category,
         image,
+        count: item.images.length,
       }))
     );
 
@@ -177,67 +157,79 @@ export default function Home() {
 
   return (
     <>
-      {/* <Carousel
+      <Carousel
         autoPlayMs={5500}
         slides={slides.map((s) => ({
           ...s,
           primaryAction: (
-            <Button
-              onClick={() =>
-                window.open("https://t.me/dr_shorina", "_blank")
-              }
-            >
+            <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
               Записаться
             </Button>
           ),
           secondaryAction: (
-            <Button
-              variant="ghost"
-              onClick={() =>
-                window.open("https://t.me/dr_shorina", "_blank")
-              }
-            >
-              Консультация
+            <Button variant="ghost" onClick={() => location.assign("/services")}>
+              Услуги
             </Button>
           ),
         }))}
-      /> */}
+      />
 
       <section className="section aboutHero">
         <Container>
           <div className="aboutHeroCard">
-            <div
-              className="aboutHeroGrid"
-              style={{ gridTemplateColumns: "minmax(300px, 0.85fr) minmax(0, 1.15fr)" }}
-            >
-              <div className="aboutHeroPhoto">
-                <div
-                  className="aboutHero__imageFrame"
-                  style={{
-                    minHeight: 520,
-                    alignItems: "center",
-                    background:
-                      "linear-gradient(135deg, rgba(220, 197, 174, 0.22), rgba(147, 199, 193, 0.14))",
-                    border: "1px solid rgba(220, 197, 174, 0.28)",
-                  }}
-                >
-                  <div
-                    style={{
-                      textAlign: "center",
-                      color: "var(--muted)",
-                      padding: 24,
-                    }}
-                  >
-                    <div style={{ fontSize: 18, fontWeight: 700, color: "var(--text)" }}>
-                      Фото врача
-                    </div>
-                    <div style={{ marginTop: 8, fontSize: 14 }}>
-                      Временная заглушка
-                    </div>
-                  </div>
+            <div className="aboutHeroGrid">
+              <div className="aboutHeroContent">
+                <div className="kicker aboutHero__kicker">Деликатная косметология</div>
+
+                <h1 className="aboutHero__title">
+                  Выглядеть свежее.<br />Не выглядеть иначе.
+                </h1>
+
+                <p className="aboutHero__text">
+                  Деликатная косметология с сохранением ваших черт, мимики и
+                  индивидуальности. Без лишних процедур, одинаковых лиц и
+                  изменений ради трендов.
+                </p>
+
+                <div className="aboutHero__actions">
+                  <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
+                    Записаться на консультацию
+                  </Button>
+
+                  <Button variant="ghost" onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
+                    Рассказать о своём запросе
+                  </Button>
+                </div>
+
+                <div className="badges aboutHero__badges">
+                  <span className="badge">10+ лет практики</span>
+                  <span className="badge">Только по показаниям</span>
+                  <span className="badge">Без лишних назначений</span>
                 </div>
               </div>
 
+              <div className="aboutHeroPhoto">
+                <div className="aboutHero__imageFrame">
+                  <picture>
+                    <source media="(max-width: 900px)" srcSet="/doctor/doctor-photo.jpg" />
+                    <img
+                      src="/doctor/doctor-full.jpg"
+                      alt="Наталия Шорина"
+                      className="aboutHeroPhoto__image"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section aboutHero">
+        <Container>
+          <div className="aboutHeroCard">
+            <div className="aboutHeroGrid">
               <div className="aboutHeroContent">
                 <div className="kicker aboutHero__kicker">О враче</div>
 
@@ -283,47 +275,35 @@ export default function Home() {
                   </Button>
                 </div>
               </div>
+
+              <div className="aboutHeroPhoto">
+                <div
+                  className="aboutHero__imageFrame"
+                  style={{
+                    minHeight: 520,
+                    alignItems: "center",
+                    background:
+                      "linear-gradient(135deg, rgba(220, 197, 174, 0.22), rgba(147, 199, 193, 0.14))",
+                    border: "1px solid rgba(220, 197, 174, 0.28)",
+                  }}
+                >
+                  <div
+                    style={{
+                      textAlign: "center",
+                      color: "var(--muted)",
+                      padding: 24,
+                    }}
+                  >
+                    <div style={{ fontSize: 18, fontWeight: 700, color: "var(--text)" }}>
+                      Фото врача
+                    </div>
+                    <div style={{ marginTop: 8, fontSize: 14 }}>
+                      Временная заглушка
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="section">
-        <Container>
-          <div className="section__head">
-            <h2 className="h2">Квалификация и документы</h2>
-            <p className="muted">
-              Дипломы, сертификаты и подтверждение профессионального обучения.
-            </p>
-          </div>
-
-          <div className="certGrid certGrid--preview">
-            {certificates.slice(0, 4).map((item) => (
-              <button
-                key={item.src}
-                type="button"
-                className="certCard"
-                onClick={() => openCertificateViewer(item)}
-              >
-                <div className="certCard__imageWrap">
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className="certCard__image"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="certCard__body">
-                  <span className="certCard__title">{item.title}</span>
-                </div>
-              </button>
-            ))}
-          </div>
-
-          <div className="certActions">
-            <Button variant="ghost" onClick={() => setIsCertificatesOpen(true)}>
-              Смотреть все
-            </Button>
           </div>
         </Container>
       </section>
@@ -332,38 +312,7 @@ export default function Home() {
         <Container>
           <div className="section__head section__head--row">
             <div>
-              <h2 className="h2">С чем можно обратиться</h2>
-              <p className="muted">
-                Основные направления работы — от консультации до комплексного плана ухода.
-              </p>
-            </div>
-
-            <Link to="/prices" className="btn btn--ghost">
-              Посмотреть прайс
-            </Link>
-          </div>
-
-          <div className="grid">
-            {serviceCards.map((item) => (
-              <InfoCard
-                key={item.title}
-                title={item.title}
-                text={item.text}
-                onClick={() => location.assign("/services")}
-              />
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="section section--alt">
-        <Container>
-          <div className="section__head section__head--row">
-            <div>
-              <h2 className="h2">Результаты</h2>
-              <p className="muted">
-                Примеры работ, где важен не эффект «после любой ценой», а понятное решение конкретного запроса.
-              </p>
+              <h2 className="h2">До / После</h2>
             </div>
 
             {shouldShowWorkArrows && (
@@ -429,17 +378,86 @@ export default function Home() {
         </Container>
       </section>
 
+      <section className="section">
+        <Container>
+          <div className="section__head">
+            <h2 className="h2">Дипломы и сертификаты</h2>
+          </div>
+
+          <div className="certGrid certGrid--preview">
+            {certificates.slice(0, 4).map((item) => (
+              <button
+                key={item.src}
+                type="button"
+                className="certCard"
+                onClick={() => openCertificateViewer(item)}
+              >
+                <div className="certCard__imageWrap">
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="certCard__image"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="certCard__body">
+                  <span className="certCard__title">{item.title}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          <div className="certActions">
+            <Button variant="ghost" onClick={() => setIsCertificatesOpen(true)}>
+              Смотреть все
+            </Button>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section">
+        <Container>
+          <div className="section__head section__head--row">
+            <div>
+              <h2 className="h2">Услуги</h2>
+            </div>
+
+            <Button variant="ghost" onClick={() => location.assign("/prices")}>
+              Посмотреть прайс
+            </Button>
+          </div>
+
+          <div className="grid">
+            {[
+              { title: "Консультация", text: "Диагностика и подбор плана ухода." },
+              { title: "Чистка лица", text: "Атравматичная / ультразвуковая." },
+              { title: "Пилинги", text: "По показаниям, сезонность и уход." },
+              {
+                title: "Инъекционные методики",
+                text: "Инъекционные методики для естественного и гармоничного результата.",
+              },
+            ].map((c) => (
+              <PlaceholderCard
+                key={c.title}
+                title={c.title}
+                text={c.text}
+                onClick={() => location.assign("/services")}
+              />
+            ))}
+          </div>
+        </Container>
+      </section>
+
       <section className="section section--alt">
         <Container>
           <div className="section__head section__head--row">
             <div>
               <h2 className="h2">Отзывы</h2>
-              <p className="muted">Опыт пациентов после консультаций и процедур.</p>
             </div>
 
-            <Link to="/reviews" className="btn btn--ghost">
+            <Button variant="ghost" onClick={() => location.assign("/reviews")}>
               Все отзывы
-            </Link>
+            </Button>
           </div>
 
           <div className="grid">
@@ -453,7 +471,9 @@ export default function Home() {
                 <p className="muted">“{review.text}”</p>
 
                 <div className="card__bottom">
-                  <div className="rating">{"★".repeat(review.rating)}</div>
+                  <div className="rating">
+                    {"★".repeat(review.rating)}
+                  </div>
                 </div>
               </article>
             ))}
@@ -465,7 +485,7 @@ export default function Home() {
         <Container>
           <div className="section__head section__head--row">
             <div>
-              <h2 className="h2">Экспертные статьи</h2>
+              <h2 className="h2">Статьи</h2>
               <p className="muted">
                 Авторские публикации о косметологии, уходе за кожей и современных процедурах.
               </p>
@@ -479,12 +499,16 @@ export default function Home() {
           <div className="articlesGrid articlesGrid--preview">
             {featuredArticles.map((article) => {
               const title = article.title || article.heading || article.name;
-              const excerpt = article.excerpt || article.announcement || article.description;
+              const excerpt =
+                article.excerpt || article.announcement || article.description;
               const image = article.image || article.preview || article.images?.[0];
 
               return (
                 <article className="articleCard" key={article.id}>
-                  <Link to={`/articles/${article.slug}`} className="articleCard__imageWrap">
+                  <Link
+                    to={`/articles/${article.slug}`}
+                    className="articleCard__imageWrap"
+                  >
                     <img
                       src={image}
                       alt={title}
@@ -500,12 +524,21 @@ export default function Home() {
                     </div>
 
                     <h3 className="articleCard__title">
-                      <Link to={`/articles/${article.slug}`}>{title}</Link>
+                      <Link to={`/articles/${article.slug}`}>
+                        {title}
+                      </Link>
                     </h3>
 
-                    {excerpt && <p className="articleCard__excerpt">{excerpt}</p>}
+                    {excerpt && (
+                      <p className="articleCard__excerpt">
+                        {excerpt}
+                      </p>
+                    )}
 
-                    <Link to={`/articles/${article.slug}`} className="articleCard__link">
+                    <Link
+                      to={`/articles/${article.slug}`}
+                      className="articleCard__link"
+                    >
                       Читать статью
                     </Link>
                   </div>
@@ -522,12 +555,11 @@ export default function Home() {
             <div>
               <h2 className="h2">Запись и контакты</h2>
               <p className="muted">
-                Напишите в Telegram, чтобы рассказать о своём запросе и понять,
-                какой следующий шаг будет действительно уместен.
+                Напишите в Telegram, чтобы уточнить показания, объём процедуры и стоимость в вашем случае.
               </p>
             </div>
-            <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
-              Написать в Telegram
+            <Button onClick={() => location.assign("/contacts")}>
+              Открыть контакты
             </Button>
           </div>
         </Container>
@@ -620,7 +652,9 @@ export default function Home() {
               className="certViewer__image"
             />
 
-            <div className="certViewer__caption">{selectedCertificate.title}</div>
+            <div className="certViewer__caption">
+              {selectedCertificate.title}
+            </div>
           </div>
         </div>
       )}

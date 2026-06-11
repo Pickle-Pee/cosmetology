@@ -241,7 +241,7 @@ export default function Home() {
                   }}
                 >
                   <picture>
-                    <source media="(max-width: 900px)" srcSet="/doctor/doctor-photo.jpg" />
+                    <source media="(max-width: 700px)" srcSet="/doctor/doctor-photo.jpg" />
                     <img
                       src="/doctor/doctor-full.jpg"
                       alt="Наталия Шорина"

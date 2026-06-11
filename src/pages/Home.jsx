@@ -5,6 +5,7 @@ import Button from "../shared/ui/Button.jsx";
 import reviews from "../data/reviews.json";
 import beforeAfter from "../data/beforeAfter.json";
 import articles from "../data/articles.json";
+import Carousel from "../shared/ui/Carousel.jsx";
 
 const certificates = [
   { src: "/certificates/cert-1.jpg", title: "Диплом" },
@@ -16,6 +17,29 @@ const certificates = [
   { src: "/certificates/cert-7.jpg", title: "Профессиональное обучение" },
   { src: "/certificates/cert-8.jpg", title: "Сертификат тренера" },
 ];
+// const slides = [
+//   {
+//     id: "s1",
+//     kicker: "Косметология • Уход • Эстетика",
+//     title: "Профессиональная косметология\nс понятным результатом",
+//     text: "Индивидуальный подбор процедур, деликатный подход и внимательное сопровождение на каждом этапе.",
+//     image: "",
+//   },
+//   {
+//     id: "s2",
+//     kicker: "Индивидуально",
+//     title: "План ухода\nпод вашу кожу",
+//     text: "Диагностика, рекомендации и процедуры по показаниям — без лишних назначений и с заботой о безопасности.",
+//     image: "",
+//   },
+//   {
+//     id: "s3",
+//     kicker: "Комфорт",
+//     title: "Спокойная эстетика\nбез лишнего шума",
+//     text: "Современные аппаратные и инъекционные методики для естественного, ухоженного результата.",
+//     image: "",
+//   },
+// ];
 
 const patientRequests = [
   {
@@ -171,6 +195,31 @@ export default function Home() {
 
   return (
     <>
+      {/* <Carousel
+        autoPlayMs={5500}
+        slides={slides.map((s) => ({
+          ...s,
+          primaryAction: (
+            <Button
+              onClick={() =>
+                window.open("https://t.me/dr_shorina", "_blank")
+              }
+            >
+              Записаться
+            </Button>
+          ),
+          secondaryAction: (
+            <Button
+              variant="ghost"
+              onClick={() =>
+                window.open("https://t.me/dr_shorina", "_blank")
+              }
+            >
+              Консультация
+            </Button>
+          ),
+        }))}
+      /> */}
       <section className="section aboutHero">
         <Container>
           <div className="aboutHeroCard">

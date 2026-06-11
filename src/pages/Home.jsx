@@ -157,7 +157,7 @@ export default function Home() {
 
   return (
     <>
-      <Carousel
+      {/* <Carousel
         autoPlayMs={5500}
         slides={slides.map((s) => ({
           ...s,
@@ -172,7 +172,7 @@ export default function Home() {
             </Button>
           ),
         }))}
-      />
+      /> */}
 
       <section className="section aboutHero">
         <Container>
@@ -210,15 +210,14 @@ export default function Home() {
 
               <div className="aboutHeroPhoto">
                 <div className="aboutHero__imageFrame">
-                  <picture>
-                    <source media="(max-width: 900px)" srcSet="/doctor/doctor-photo.jpg" />
-                    <img
-                      src="/doctor/doctor-full.jpg"
-                      alt="Наталия Шорина"
-                      className="aboutHeroPhoto__image"
-                      loading="lazy"
-                    />
-                  </picture>
+                  <div
+                    style={{
+                      textAlign: "center",
+                      color: "var(--muted)",
+                      padding: 24,
+                    }}
+                  >
+                  </div>
                 </div>
               </div>
             </div>
@@ -230,6 +229,28 @@ export default function Home() {
         <Container>
           <div className="aboutHeroCard">
             <div className="aboutHeroGrid">
+              <div className="aboutHeroPhoto">
+                <div
+                  className="aboutHero__imageFrame"
+                  style={{
+                    minHeight: 520,
+                    alignItems: "center",
+                    background:
+                      "linear-gradient(135deg, rgba(220, 197, 174, 0.22), rgba(147, 199, 193, 0.14))",
+                    border: "1px solid rgba(220, 197, 174, 0.28)",
+                  }}
+                >
+                  <picture>
+                    <source media="(max-width: 900px)" srcSet="/doctor/doctor-photo.jpg" />
+                    <img
+                      src="/doctor/doctor-full.jpg"
+                      alt="Наталия Шорина"
+                      className="aboutHeroPhoto__image"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+              </div>
               <div className="aboutHeroContent">
                 <div className="kicker aboutHero__kicker">О враче</div>
 
@@ -273,34 +294,6 @@ export default function Home() {
                   <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
                     Подробнее о враче
                   </Button>
-                </div>
-              </div>
-
-              <div className="aboutHeroPhoto">
-                <div
-                  className="aboutHero__imageFrame"
-                  style={{
-                    minHeight: 520,
-                    alignItems: "center",
-                    background:
-                      "linear-gradient(135deg, rgba(220, 197, 174, 0.22), rgba(147, 199, 193, 0.14))",
-                    border: "1px solid rgba(220, 197, 174, 0.28)",
-                  }}
-                >
-                  <div
-                    style={{
-                      textAlign: "center",
-                      color: "var(--muted)",
-                      padding: 24,
-                    }}
-                  >
-                    <div style={{ fontSize: 18, fontWeight: 700, color: "var(--text)" }}>
-                      Фото врача
-                    </div>
-                    <div style={{ marginTop: 8, fontSize: 14 }}>
-                      Временная заглушка
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

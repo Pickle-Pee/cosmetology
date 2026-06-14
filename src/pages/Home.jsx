@@ -233,7 +233,6 @@ export default function Home() {
                 <div
                   className="aboutHero__imageFrame"
                   style={{
-                    minHeight: 520,
                     alignItems: "center",
                     background:
                       "linear-gradient(135deg, rgba(220, 197, 174, 0.22), rgba(147, 199, 193, 0.14))",

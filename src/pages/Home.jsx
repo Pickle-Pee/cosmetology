@@ -234,8 +234,8 @@ export default function Home() {
                 <picture>
                   <source media="(max-width: 700px)" srcSet="/doctor/doctor-photo.jpg" />
                   <img
-                    src="bg_section.png"
-                    alt="Наталия Шорина"
+                    src="./bg_section.png"
+                    alt="Интерьер кабинета врача-косметолога"
                     className="leadHero__image"
                     loading="eager"
                   />
@@ -246,7 +246,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="section doctorBlock">
+      <section className="section doctorBlock aboutHero aboutDoctor">
         <Container>
           <div className="doctorBlock__card">
             <div className="doctorBlock__photo">
@@ -286,11 +286,11 @@ export default function Home() {
                 полезным, безопасным и обоснованным.
               </p>
 
-              <p>
+              <div className="doctorAccent">
                 Иногда это процедура.<br />
                 Иногда — правильно подобранный домашний уход.<br />
                 А иногда лучше ничего не менять.
-              </p>
+              </div>
 
               <div className="doctorBlock__divider" />
 
@@ -309,9 +309,9 @@ export default function Home() {
               </div>
 
               <div className="doctorBlock__actions">
-                <Link to="/about" className="btn btn--primary">
+                {/* <Link to="/about" className="btn btn--primary">
                   Подробнее о враче
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

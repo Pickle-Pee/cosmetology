@@ -1,35 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import Container from "../shared/ui/Container.jsx";
 import Button from "../shared/ui/Button.jsx";
-import Carousel from "../shared/ui/Carousel.jsx";
 import reviews from "../data/reviews.json";
 import beforeAfter from "../data/beforeAfter.json";
 import { Link } from "react-router-dom";
 import articles from "../data/articles.json";
-
-const slides = [
-  {
-    id: "s1",
-    kicker: "Косметология • Уход • Эстетика",
-    title: "Профессиональная косметология\nс понятным результатом",
-    text: "Индивидуальный подбор процедур, деликатный подход и внимательное сопровождение на каждом этапе.",
-    image: "",
-  },
-  {
-    id: "s2",
-    kicker: "Индивидуально",
-    title: "План ухода\nпод вашу кожу",
-    text: "Диагностика, рекомендации и процедуры по показаниям — без лишних назначений и с заботой о безопасности.",
-    image: "",
-  },
-  {
-    id: "s3",
-    kicker: "Комфорт",
-    title: "Спокойная эстетика\nбез лишнего шума",
-    text: "Современные аппаратные и инъекционные методики для естественного, ухоженного результата.",
-    image: "",
-  },
-];
 
 const certificates = [
   { src: "/certificates/cert-1.jpg", title: "Диплом" },
@@ -61,21 +36,85 @@ const doctorFacts = [
   },
 ];
 
-function PlaceholderCard({ title, text, cta = "Подробнее →", onClick }) {
-  return (
-    <article className="card card--minimal">
-      <div className="card__top">
-        <h3 className="h3">{title}</h3>
-      </div>
-      <p className="muted">{text}</p>
-      <div className="card__bottom">
-        <button className="link" onClick={onClick}>
-          {cta}
-        </button>
-      </div>
-    </article>
-  );
-}
+const requestCards = [
+  {
+    title: "Лицо выглядит уставшим, хотя вы высыпаетесь",
+    text: "Кожа кажется тусклой, появляются отёки или ощущение, что лицу не хватает свежести даже после отдыха.",
+  },
+  {
+    title: "Кожа стала сухой, тусклой или неровной",
+    text: "Обычный уход больше не даёт прежнего эффекта, тон стал менее ровным, а кожа выглядит менее плотной и спокойной.",
+  },
+  {
+    title: "Беспокоят высыпания или следы постакне",
+    text: "Важно не просто убрать проявления, а понять причину и подобрать бережную тактику восстановления кожи.",
+  },
+  {
+    title: "Изменился овал лица",
+    text: "Появилась мягкость тканей, отёчность или ощущение, что лицо стало выглядеть иначе, чем раньше.",
+  },
+  {
+    title: "Хочется выглядеть свежее, но естественно",
+    text: "Без резких изменений, перегруженных объёмов и результата, который сразу выдаёт вмешательство.",
+  },
+  {
+    title: "Не понимаете, нужна ли вам косметология вообще",
+    text: "Можно прийти без готового решения. Иногда консультация нужна именно для того, чтобы понять, стоит ли что-то делать сейчас.",
+  },
+];
+
+const approachPrinciples = [
+  {
+    title: "Диагностика",
+    text: "Оценка кожи, тканей, анамнеза и противопоказаний.",
+  },
+  {
+    title: "Обоснованный план",
+    text: "Понятная последовательность без лишних вмешательств.",
+  },
+  {
+    title: "Безопасность",
+    text: "Результат не должен быть важнее здоровья и естественности.",
+  },
+];
+
+const serviceGroups = [
+  {
+    title: "Качество и здоровье кожи",
+    text: "Сухость, тусклый тон, неровный рельеф, воспаления, постакне и восстановление кожного барьера.",
+    tags: [
+      "Чистка",
+      "Пилинги",
+      "PRX",
+      "Биоревитализация",
+      "Мезотерапия",
+      "Плазмотерапия",
+    ],
+  },
+  {
+    title: "Возрастные изменения и деликатная коррекция",
+    text: "Мимические морщины, снижение тонуса, изменение овала, потеря плотности и гармония пропорций.",
+    tags: [
+      "Ботулинотерапия",
+      "Контурная пластика",
+      "Коллагеностимуляторы",
+      "Коллагенотерапия",
+    ],
+  },
+  {
+    title: "Аппаратные методики и лазерная эпиляция",
+    text: "Тонус кожи, плотность тканей, пигментация, возрастные изменения и нежелательные волосы.",
+    tags: [
+      "Ultraformer MPT",
+      "Volnewmer",
+      "Virtue RF",
+      "Vivace RF",
+      "Morpheus8",
+      "Lumecca",
+      "Soprano XL",
+    ],
+  },
+];
 
 export default function Home() {
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false);
@@ -157,144 +196,241 @@ export default function Home() {
 
   return (
     <>
-      {/* <Carousel
-        autoPlayMs={5500}
-        slides={slides.map((s) => ({
-          ...s,
-          primaryAction: (
-            <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
-              Записаться
-            </Button>
-          ),
-          secondaryAction: (
-            <Button variant="ghost" onClick={() => location.assign("/services")}>
-              Услуги
-            </Button>
-          ),
-        }))}
-      /> */}
-
-      <section className="section aboutHero">
+      <section className="section leadHero">
         <Container>
-          <div className="aboutHeroCard">
-            <div className="aboutHeroGrid">
-              <div className="aboutHeroContent">
-                <div className="kicker aboutHero__kicker">Деликатная косметология</div>
+          <div className="leadHero__card">
+            <div className="leadHero__content">
+              <div className="kicker leadHero__kicker">Наталия Шорина · врач-дерматокосметолог</div>
 
-                <h1 className="aboutHero__title">
-                  Выглядеть свежее.<br />Не выглядеть иначе.
-                </h1>
+              <h1 className="leadHero__title">
+                Выглядеть свежее.<br />Не выглядеть иначе
+              </h1>
 
-                <p className="aboutHero__text">
-                  Деликатная косметология с сохранением ваших черт, мимики и
-                  индивидуальности. Без лишних процедур, одинаковых лиц и
-                  изменений ради трендов.
-                </p>
+              <p className="leadHero__text">
+                Деликатная косметология с сохранением ваших черт, мимики и
+                индивидуальности. Без лишних процедур, одинаковых лиц и
+                изменений ради трендов.
+              </p>
 
-                <div className="aboutHero__actions">
-                  <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
-                    Записаться на консультацию
-                  </Button>
+              <div className="leadHero__actions">
+                <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
+                  Записаться на консультацию
+                </Button>
 
-                  <Button variant="ghost" onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
-                    Рассказать о своём запросе
-                  </Button>
-                </div>
-
-                <div className="badges aboutHero__badges">
-                  <span className="badge">10+ лет практики</span>
-                  <span className="badge">Только по показаниям</span>
-                  <span className="badge">Без лишних назначений</span>
-                </div>
+                <Button variant="ghost" onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
+                  Рассказать о своём запросе
+                </Button>
               </div>
 
-              <div className="aboutHeroPhoto">
-                <div className="aboutHero__imageFrame">
-                  <div
-                    style={{
-                      textAlign: "center",
-                      color: "var(--muted)",
-                      padding: 24,
-                    }}
-                  >
-                  </div>
-                </div>
+              <div className="leadHero__proof">
+                <span>10+ лет практики</span>
+                <span>Только по показаниям</span>
+                <span>Без лишних назначений</span>
+              </div>
+            </div>
+
+            <div className="leadHero__media">
+              <div className="leadHero__imageFrame">
+                <picture>
+                  <source media="(max-width: 700px)" srcSet="/doctor/doctor-photo.jpg" />
+                  <img
+                    src="/doctor/doctor-full.jpg"
+                    alt="Наталия Шорина"
+                    className="leadHero__image"
+                    loading="eager"
+                  />
+                </picture>
               </div>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="section aboutHero">
+      <section className="section doctorBlock">
         <Container>
-          <div className="aboutHeroCard">
-            <div className="aboutHeroGrid">
-              <div className="aboutHeroPhoto">
-                <div
-                  className="aboutHero__imageFrame"
-                  style={{
-                    alignItems: "center",
-                    background:
-                      "linear-gradient(135deg, rgba(220, 197, 174, 0.22), rgba(147, 199, 193, 0.14))",
-                    border: "1px solid rgba(220, 197, 174, 0.28)",
-                  }}
-                >
-                  <picture>
-                    <source media="(max-width: 700px)" srcSet="/doctor/doctor-photo.jpg" />
-                    <img
-                      src="/doctor/doctor-full.jpg"
-                      alt="Наталия Шорина"
-                      className="aboutHeroPhoto__image"
-                      loading="lazy"
-                    />
-                  </picture>
+          <div className="doctorBlock__card">
+            <div className="doctorBlock__photo">
+              <div className="doctorBlock__imageFrame">
+                <picture>
+                  <source media="(max-width: 700px)" srcSet="/doctor/doctor-photo.jpg" />
+                  <img
+                    src="/doctor/doctor-full.jpg"
+                    alt="Наталия Шорина"
+                    className="doctorBlock__image"
+                    loading="lazy"
+                  />
+                </picture>
+
+                <div className="doctorBlock__caption">
+                  <strong>Наталия Шорина</strong>
+                  <span>Врач-дерматокосметолог</span>
                 </div>
               </div>
-              <div className="aboutHeroContent">
-                <div className="kicker aboutHero__kicker">О враче</div>
+            </div>
 
-                <h2 className="aboutHero__title">
-                  Врач, который умеет сказать:<br />«Вам это не нужно»
+            <div className="doctorBlock__content">
+              <div className="kicker doctorBlock__kicker">О враче</div>
+
+              <h2 className="doctorBlock__title">
+                Врач, который умеет сказать:<br />«Вам это не нужно»
+              </h2>
+
+              <p>
+                Для меня косметология — это не поиск новых недостатков и не
+                стремление изменить человека.
+              </p>
+
+              <p>
+                Моя задача — понять, что действительно вас беспокоит, оценить
+                состояние кожи и тканей и предложить решение, которое будет
+                полезным, безопасным и обоснованным.
+              </p>
+
+              <p>
+                Иногда это процедура.<br />
+                Иногда — правильно подобранный домашний уход.<br />
+                А иногда лучше ничего не менять.
+              </p>
+
+              <div className="doctorBlock__divider" />
+
+              <p>
+                <b>Не каждая консультация должна заканчиваться процедурой.</b>{" "}
+                Но каждая должна заканчиваться пониманием, что делать дальше.
+              </p>
+
+              <div className="doctorFacts">
+                {doctorFacts.map((item) => (
+                  <article className="doctorFact" key={item.title}>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="doctorBlock__actions">
+                <Link to="/about" className="btn btn--primary">
+                  Подробнее о враче
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section requestSection">
+        <Container>
+          <div className="requestSection__card">
+            <div className="sectionLabel">С чем можно обратиться</div>
+
+            <div className="requestSection__head">
+              <div>
+                <h2 className="requestSection__title">
+                  Приходите с запросом,<br />не с готовым решением
                 </h2>
-
-                <p className="aboutHero__text">
-                  Для меня косметология — это не поиск новых недостатков и не
-                  стремление изменить человека.
-                </p>
-
-                <p className="aboutHero__text">
-                  Моя задача — понять, что действительно вас беспокоит, оценить
-                  состояние кожи и тканей и предложить решение, которое будет
-                  полезным, безопасным и обоснованным.
-                </p>
-
-                <p className="aboutHero__text">
-                  Иногда это процедура. Иногда — правильно подобранный домашний
-                  уход. А иногда лучше ничего не менять.
-                </p>
-
-                <div style={{ height: 1, background: "var(--border)", margin: "24px 0" }} />
-
-                <p className="aboutHero__text">
-                  <b>Не каждая консультация должна заканчиваться процедурой.</b><br />
-                  Но каждая должна заканчиваться пониманием, что делать дальше.
-                </p>
-
-                <div className="grid" style={{ marginTop: 22 }}>
-                  {doctorFacts.map((item) => (
-                    <article className="card card--minimal" key={item.title}>
-                      <h3 className="h3">{item.title}</h3>
-                      <p className="muted">{item.text}</p>
-                    </article>
-                  ))}
-                </div>
-
-                <div className="aboutHero__actions" style={{ marginTop: 24 }}>
-                  <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
-                    Подробнее о враче
-                  </Button>
-                </div>
               </div>
+
+              <p className="requestSection__text">
+                Не нужно заранее знать названия процедур. Достаточно рассказать,
+                что изменилось, что беспокоит и какого результата вы хотите
+                избежать. На консультации врач разберётся в причинах и предложит
+                только обоснованные решения.
+              </p>
+            </div>
+
+            <div className="requestGrid">
+              {requestCards.map((item, index) => (
+                <article className="requestCard" key={item.title}>
+                  <span>{index + 1}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="requestSection__bottom">
+              <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
+                Обсудить мой запрос с врачом
+              </Button>
+
+              <p>Консультация не обязывает проходить процедуру.</p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section approachSection">
+        <Container>
+          <div className="approachSection__card">
+            <div className="sectionLabel">Подход</div>
+
+            <div className="approachSection__top">
+              <h2 className="approachSection__title">
+                Сначала показания.<br />Потом процедура.
+              </h2>
+
+              <div className="approachSection__text">
+                <p>
+                  В эстетической медицине важно не просто выбрать метод, а понять,
+                  зачем он нужен именно сейчас.
+                </p>
+                <p>
+                  Каждое назначение должно быть объяснимым: что мы делаем, почему
+                  выбираем этот способ, какого результата можем ожидать и какие
+                  ограничения важно учесть.
+                </p>
+              </div>
+            </div>
+
+            <div className="approachPrinciples">
+              {approachPrinciples.map((item) => (
+                <article className="approachPrinciple" key={item.title}>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section serviceDirections">
+        <Container>
+          <div className="serviceDirections__card">
+            <div className="sectionLabel">Направления</div>
+
+            <div className="serviceDirections__head">
+              <h2 className="serviceDirections__title">
+                Направления,<br />с которыми работает врач
+              </h2>
+
+              <p>
+                Врач работает с кожей, возрастными изменениями, эстетической
+                коррекцией, аппаратными и лазерными методиками. Все направления
+                объединяет бережный подход: без перегруженного результата и
+                назначений «на всякий случай».
+              </p>
+            </div>
+
+            <div className="serviceDirections__grid">
+              {serviceGroups.map((group) => (
+                <article className="serviceDirection" key={group.title}>
+                  <h3>{group.title}</h3>
+                  <p>{group.text}</p>
+
+                  <div className="serviceDirection__tags">
+                    {group.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="serviceDirections__actions">
+              <Button onClick={() => location.assign("/services")}>
+                Смотреть все услуги
+              </Button>
             </div>
           </div>
         </Container>
@@ -365,76 +501,6 @@ export default function Home() {
                   </span>
                 </div>
               </article>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="section">
-        <Container>
-          <div className="section__head">
-            <h2 className="h2">Дипломы и сертификаты</h2>
-          </div>
-
-          <div className="certGrid certGrid--preview">
-            {certificates.slice(0, 4).map((item) => (
-              <button
-                key={item.src}
-                type="button"
-                className="certCard"
-                onClick={() => openCertificateViewer(item)}
-              >
-                <div className="certCard__imageWrap">
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className="certCard__image"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="certCard__body">
-                  <span className="certCard__title">{item.title}</span>
-                </div>
-              </button>
-            ))}
-          </div>
-
-          <div className="certActions">
-            <Button variant="ghost" onClick={() => setIsCertificatesOpen(true)}>
-              Смотреть все
-            </Button>
-          </div>
-        </Container>
-      </section>
-
-      <section className="section">
-        <Container>
-          <div className="section__head section__head--row">
-            <div>
-              <h2 className="h2">Услуги</h2>
-            </div>
-
-            <Button variant="ghost" onClick={() => location.assign("/prices")}>
-              Посмотреть прайс
-            </Button>
-          </div>
-
-          <div className="grid">
-            {[
-              { title: "Консультация", text: "Диагностика и подбор плана ухода." },
-              { title: "Чистка лица", text: "Атравматичная / ультразвуковая." },
-              { title: "Пилинги", text: "По показаниям, сезонность и уход." },
-              {
-                title: "Инъекционные методики",
-                text: "Инъекционные методики для естественного и гармоничного результата.",
-              },
-            ].map((c) => (
-              <PlaceholderCard
-                key={c.title}
-                title={c.title}
-                text={c.text}
-                onClick={() => location.assign("/services")}
-              />
             ))}
           </div>
         </Container>
@@ -545,13 +611,54 @@ export default function Home() {
         <Container>
           <div className="cta">
             <div>
-              <h2 className="h2">Запись и контакты</h2>
+              <h2 className="h2">Записаться на консультацию</h2>
               <p className="muted">
-                Напишите в Telegram, чтобы уточнить показания, объём процедуры и стоимость в вашем случае.
+                Напишите в Telegram, чтобы рассказать о своём запросе и понять,
+                какой следующий шаг будет действительно уместен.
               </p>
             </div>
-            <Button onClick={() => location.assign("/contacts")}>
-              Открыть контакты
+            <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>
+              Написать в Telegram
+            </Button>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section">
+        <Container>
+          <div className="section__head">
+            <h2 className="h2">Квалификация и документы</h2>
+            <p className="muted">
+              Дипломы, сертификаты и подтверждение профессионального обучения.
+            </p>
+          </div>
+
+          <div className="certGrid certGrid--preview">
+            {certificates.slice(0, 4).map((item) => (
+              <button
+                key={item.src}
+                type="button"
+                className="certCard"
+                onClick={() => openCertificateViewer(item)}
+              >
+                <div className="certCard__imageWrap">
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="certCard__image"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="certCard__body">
+                  <span className="certCard__title">{item.title}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          <div className="certActions">
+            <Button variant="ghost" onClick={() => setIsCertificatesOpen(true)}>
+              Смотреть все
             </Button>
           </div>
         </Container>

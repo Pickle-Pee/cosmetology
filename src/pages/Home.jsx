@@ -234,7 +234,7 @@ export default function Home() {
                 <picture>
                   <source media="(max-width: 700px)" srcSet="/doctor/doctor-photo.jpg" />
                   <img
-                    src="/doctor/doctor-full.jpg"
+                    src="bg_section.png"
                     alt="Наталия Шорина"
                     className="leadHero__image"
                     loading="eager"

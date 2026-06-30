@@ -6,6 +6,7 @@ import beforeAfter from "../data/beforeAfter.json";
 import { Link } from "react-router-dom";
 import articles from "../data/articles.json";
 import "../styles/homeSections.css";
+import "../styles/homeFixes.css";
 
 const certificates = [
   { src: "/certificates/cert-1.jpg", title: "Диплом" },
@@ -72,9 +73,9 @@ const categoryDescriptions = {
 };
 
 const consultationBenefits = [
-  { icon: "✓", title: "Только по показаниям" },
-  { icon: "?", title: "Подробные объяснения и честные рекомендации" },
-  { icon: "•", title: "Индивидуальный подход к вашей коже и задачам" },
+  { icon: "check", title: "Только по показаниям" },
+  { icon: "message", title: "Подробные объяснения и честные рекомендации" },
+  { icon: "person", title: "Индивидуальный подход к вашей коже и задачам" },
 ];
 
 export default function Home() {
@@ -221,9 +222,9 @@ export default function Home() {
         <Container>
           <div className="resultsSection__card">
             <div className="sectionLabel">Результаты</div>
-            <div className="resultsSection__head"><div><h2 className="resultsSection__title">Результаты, которые<br />не спорят с внешностью</h2><p>В хорошей косметологии важны не резкие перемены, а точные изменения: свежее лицо, более ровная кожа, мягкая коррекция и сохранение естественных черт.</p></div>{shouldShowWorkArrows && <div className="carouselControls"><button type="button" className="carouselArrow" onClick={() => scrollWorks("prev")} aria-label="Предыдущие работы">←</button><button type="button" className="carouselArrow" onClick={() => scrollWorks("next")} aria-label="Следующие работы">→</button></div>}</div>
+            <div className="resultsSection__head"><div><h2 className="resultsSection__title">Результаты, которые<br />не спорят с внешностью</h2><p>В хорошей косметологии важны не резкие перемены, а точные изменения: свежее лицо, более ровная кожа, мягкая коррекция и сохранение естественных черт.</p></div></div>
             <div className="worksTabs" aria-label="Категории работ">{workCategories.map((category) => <button key={category} type="button" className={activeWorkCategory === category ? "worksTab worksTab--active" : "worksTab"} onClick={() => setActiveWorkCategory(category)}>{getCategoryTitle(category)}</button>)}</div>
-            <div className="activeResultInfo"><span className="activeResultInfo__icon">✦</span><div><h3>{getCategoryTitle(activeWorkCategory)}</h3><p>{categoryDescriptions[activeWorkCategory]}</p></div></div>
+            <div className="activeResultInfo"><span className="activeResultInfo__icon">✦</span><div className="activeResultInfo__content"><h3>{getCategoryTitle(activeWorkCategory)}</h3><p>{categoryDescriptions[activeWorkCategory]}</p></div>{shouldShowWorkArrows && <div className="carouselControls activeResultInfo__controls"><button type="button" className="carouselArrow" onClick={() => scrollWorks("prev")} aria-label="Предыдущие работы">←</button><button type="button" className="carouselArrow" onClick={() => scrollWorks("next")} aria-label="Следующие работы">→</button></div>}</div>
             <div className="worksCarousel" ref={worksCarouselRef}>{filteredWorkImages.map((item) => <article className="workCard" key={item.id}><div className="workCard__imageWrap"><img src={item.image} alt={item.category} className="workCard__image" loading="lazy" /></div><div className="workCard__body"><span className="pill">{getCategoryTitle(item.category)}</span></div></article>)}</div>
           </div>
         </Container>
@@ -250,7 +251,7 @@ export default function Home() {
       <section className="section consultationCta section--alt">
         <Container>
           <div className="consultationCta__card">
-            <div className="consultationCta__content"><div className="sectionLabel">Консультация</div><h2>Не обязательно знать,<br />какая процедура вам нужна</h2><p>Достаточно рассказать, что вас беспокоит. На консультации разберёмся, какие изменения связаны с состоянием кожи, какие можно скорректировать и какие решения будут действительно уместны.</p><div className="consultationCta__actions"><Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Записаться на консультацию</Button><Button variant="ghost" onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Рассказать о своём запросе</Button></div><div className="consultationBenefits">{consultationBenefits.map((item) => <div className="consultationBenefit" key={item.title}><span>{item.icon}</span><p>{item.title}</p></div>)}</div></div>
+            <div className="consultationCta__content"><div className="sectionLabel">Консультация</div><h2>Не обязательно знать,<br />какая процедура вам нужна</h2><p>Достаточно рассказать, что вас беспокоит. На консультации разберёмся, какие изменения связаны с состоянием кожи, какие можно скорректировать и какие решения будут действительно уместны.</p><div className="consultationCta__actions"><Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Записаться на консультацию</Button><Button variant="ghost" onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Рассказать о своём запросе</Button></div><div className="consultationBenefits">{consultationBenefits.map((item) => <div className="consultationBenefit" key={item.title}><span className={`consultationBenefit__icon consultationBenefit__icon--${item.icon}`} aria-hidden="true" /><p>{item.title}</p></div>)}</div></div>
             <div className="consultationCta__media"><div className="consultationCta__imagePlaceholder" /></div>
           </div>
         </Container>

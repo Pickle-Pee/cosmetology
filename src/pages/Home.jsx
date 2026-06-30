@@ -154,7 +154,14 @@ export default function Home() {
               <div className="leadHero__proof"><span>10+ лет практики</span><span>Только по показаниям</span><span>Без лишних назначений</span></div>
             </div>
             <div className="leadHero__media">
-              <div className="leadHero__imageFrame leadHero__placeholderImage" aria-label="Будущее фото врача" />
+              <div className="leadHero__imageFrame">
+                <img
+                  src="/bg_leadhero_section.png"
+                  alt=""
+                  className="leadHero__image"
+                  loading="eager"
+                />
+              </div>
             </div>
           </div>
         </Container>
@@ -252,7 +259,16 @@ export default function Home() {
         <Container>
           <div className="consultationCta__card">
             <div className="consultationCta__content"><div className="sectionLabel">Консультация</div><h2>Не обязательно знать,<br />какая процедура вам нужна</h2><p>Достаточно рассказать, что вас беспокоит. На консультации разберёмся, какие изменения связаны с состоянием кожи, какие можно скорректировать и какие решения будут действительно уместны.</p><div className="consultationCta__actions"><Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Записаться на консультацию</Button><Button variant="ghost" onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Рассказать о своём запросе</Button></div><div className="consultationBenefits">{consultationBenefits.map((item) => <div className="consultationBenefit" key={item.title}><span className={`consultationBenefit__icon consultationBenefit__icon--${item.icon}`} aria-hidden="true" /><p>{item.title}</p></div>)}</div></div>
-            <div className="consultationCta__media"><div className="consultationCta__imagePlaceholder" /></div>
+            <div className="consultationCta__media">
+              <div className="consultationCta__imagePlaceholder">
+                <img
+                  src="/bg_consultation_section.png"
+                  alt=""
+                  className="consultationCta__image"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
         </Container>
       </section>

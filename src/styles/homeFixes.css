@@ -1,0 +1,229 @@
+/* Home visual fixes after preview review */
+
+/* 1. Tighter modern vertical rhythm */
+.leadHero,
+.doctorBlock,
+.requestSection,
+.approachSection,
+.serviceDirections,
+.resultsSection,
+.reviewsFeature,
+.articlesFeature,
+.consultationCta,
+.documentsSection {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.leadHero {
+  padding-top: 24px;
+}
+
+/* 2. First block proof line */
+.leadHero__proof {
+  gap: 8px;
+  margin-top: 26px;
+  max-width: 520px;
+}
+
+.leadHero__proof span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(220, 197, 174, 0.28);
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--text-soft);
+  font-size: 13px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.leadHero__proof span:not(:last-child)::after {
+  display: none;
+}
+
+/* 3. Doctor photo fills the left side again */
+.doctorBlock__card {
+  align-items: stretch;
+  padding: 30px;
+}
+
+.doctorBlock__photo {
+  align-items: stretch;
+  min-height: 100%;
+}
+
+.doctorBlock__imageFrame {
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  min-height: 620px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.doctorBlock__imageFrame picture {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.doctorBlock__image {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.doctorBlock__content {
+  align-self: center;
+}
+
+/* 4. Result arrows inside active mini block */
+.resultsSection__head {
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  margin-bottom: 24px;
+}
+
+.activeResultInfo {
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+.activeResultInfo__content {
+  min-width: 0;
+  flex: 1;
+}
+
+.activeResultInfo__controls {
+  margin-left: auto;
+}
+
+.activeResultInfo .carouselArrow {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+/* 5. Consultation benefit icons */
+.consultationBenefit {
+  align-items: center;
+}
+
+.consultationBenefit__icon {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.consultationBenefit__icon::before,
+.consultationBenefit__icon::after {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.consultationBenefit__icon--check::before {
+  width: 12px;
+  height: 7px;
+  border-left: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  left: 8px;
+  top: 9px;
+}
+
+.consultationBenefit__icon--message::before {
+  width: 15px;
+  height: 12px;
+  border: 1.8px solid currentColor;
+  border-radius: 6px;
+  left: 7px;
+  top: 7px;
+}
+
+.consultationBenefit__icon--message::after {
+  width: 6px;
+  height: 6px;
+  border-left: 1.8px solid currentColor;
+  border-bottom: 1.8px solid currentColor;
+  transform: rotate(-18deg);
+  left: 10px;
+  top: 17px;
+}
+
+.consultationBenefit__icon--person::before {
+  width: 8px;
+  height: 8px;
+  border: 1.8px solid currentColor;
+  border-radius: 999px;
+  left: 10px;
+  top: 6px;
+}
+
+.consultationBenefit__icon--person::after {
+  width: 15px;
+  height: 8px;
+  border: 1.8px solid currentColor;
+  border-radius: 999px 999px 6px 6px;
+  border-bottom: 0;
+  left: 6.5px;
+  top: 17px;
+}
+
+@media (max-width: 1100px) {
+  .doctorBlock__imageFrame {
+    min-height: 520px;
+  }
+
+  .doctorBlock__image {
+    object-fit: contain;
+    background: linear-gradient(135deg, rgba(220, 197, 174, 0.2), rgba(147, 199, 193, 0.12));
+  }
+
+  .activeResultInfo {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .leadHero,
+  .doctorBlock,
+  .requestSection,
+  .approachSection,
+  .serviceDirections,
+  .resultsSection,
+  .reviewsFeature,
+  .articlesFeature,
+  .consultationCta,
+  .documentsSection {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .leadHero__proof {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .leadHero__proof span {
+    white-space: normal;
+  }
+
+  .doctorBlock__imageFrame {
+    min-height: 420px;
+  }
+
+  .activeResultInfo {
+    flex-wrap: wrap;
+  }
+
+  .activeResultInfo__controls {
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}

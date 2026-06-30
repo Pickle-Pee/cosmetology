@@ -85,7 +85,6 @@
 
 /* 4. Result arrows inside active mini block */
 .resultsSection__head {
-  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   margin-bottom: 24px;
 }
 

@@ -1,3 +1,23 @@
+@font-face {
+  font-family: "Manrope";
+  src: url("fonts/Manrope/Manrope-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist/Geist-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "Cormorant";
+  src: url("fonts/Cormorant/CormorantGaramond-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("fonts/Playfair/PlayfairDisplay-VariableFont_wght.ttf");
+}
+
 :root {
   --bg: #ffffff;
   --bg-elevated: #fdfcfb;
@@ -50,8 +70,7 @@ html {
 
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Arial, sans-serif;
+  font-family: Inter;
   color: var(--text);
   background:
     radial-gradient(circle at top left, rgba(147, 199, 193, 0.12), transparent 30%),
@@ -2769,6 +2788,7 @@ img {
   letter-spacing: -0.055em;
   font-weight: 600;
   color: var(--text);
+  font-family: "Cormorant Garamond", serif;
 }
 
 .leadHero__text {

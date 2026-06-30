@@ -2750,7 +2750,7 @@ img {
   grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr);
   gap: 28px;
   align-items: stretch;
-  padding: 54px;
+  /* padding: 54px; */
 }
 
 .leadHero__content {
@@ -2822,10 +2822,10 @@ img {
   gap: 12px;
 }
 
-.leadHero__proof span + span::before {
+/* .leadHero__proof span + span::before {
   content: "·";
   color: rgba(112, 128, 127, 0.7);
-}
+} */
 
 .leadHero__media {
   display: flex;

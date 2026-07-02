@@ -1,10 +1,21 @@
 import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Container from "../shared/ui/Container.jsx";
 import Button from "../shared/ui/Button.jsx";
 import reviews from "../data/reviews.json";
 import beforeAfter from "../data/beforeAfter.json";
 import { Link } from "react-router-dom";
 import articles from "../data/articles.json";
+import {
+  buttonHover,
+  buttonTap,
+  cardHover,
+  fadeUp,
+  softFade,
+  stagger,
+  slowStagger,
+  viewport,
+} from "../shared/motion.js";
 import "../styles/homeSections.css";
 import "../styles/homeFixes.css";
 
@@ -78,6 +89,28 @@ const consultationBenefits = [
   { icon: "person", title: "Индивидуальный подход к вашей коже и задачам" },
 ];
 
+function RevealSection({ className, children }) {
+  return (
+    <motion.section
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={fadeUp}
+    >
+      {children}
+    </motion.section>
+  );
+}
+
+function MotionButtonWrap({ children }) {
+  return (
+    <motion.div whileHover={buttonHover} whileTap={buttonTap}>
+      {children}
+    </motion.div>
+  );
+}
+
 export default function Home() {
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -140,57 +173,56 @@ export default function Home() {
 
   return (
     <>
-      <section className="section leadHero">
+      <motion.section className="section leadHero" initial="hidden" animate="visible" variants={stagger}>
         <Container>
           <div className="leadHero__card">
-            <div className="leadHero__content">
-              <div className="kicker leadHero__kicker">Наталия Шорина · врач-дерматокосметолог</div>
-              <h1 className="leadHero__title">Выглядеть свежее.<br />Не выглядеть иначе</h1>
-              <p className="leadHero__text">Деликатная косметология с сохранением ваших черт, мимики и индивидуальности. Без лишних процедур, одинаковых лиц и изменений ради трендов.</p>
-              <div className="leadHero__actions">
-                <Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Записаться на консультацию</Button>
-                <Button variant="ghost" onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Рассказать о своём запросе</Button>
-              </div>
-              <div className="leadHero__proof"><span>10+ лет практики</span><span>Только по показаниям</span><span>Без лишних назначений</span></div>
-            </div>
-            <div className="leadHero__media">
+            <motion.div className="leadHero__content" variants={stagger}>
+              <motion.div className="kicker leadHero__kicker" variants={fadeUp}>Наталия Шорина · врач-дерматокосметолог</motion.div>
+              <motion.h1 className="leadHero__title" variants={fadeUp}>Выглядеть свежее.<br />Не выглядеть иначе</motion.h1>
+              <motion.p className="leadHero__text" variants={fadeUp}>Деликатная косметология с сохранением ваших черт, мимики и индивидуальности. Без лишних процедур, одинаковых лиц и изменений ради трендов.</motion.p>
+              <motion.div className="leadHero__actions" variants={fadeUp}>
+                <MotionButtonWrap><Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Записаться на консультацию</Button></MotionButtonWrap>
+                <MotionButtonWrap><Button variant="ghost" onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Рассказать о своём запросе</Button></MotionButtonWrap>
+              </motion.div>
+              <motion.div className="leadHero__proof" variants={stagger}>
+                {["10+ лет практики", "Только по показаниям", "Без лишних назначений"].map((item) => (
+                  <motion.span key={item} variants={fadeUp}>{item}</motion.span>
+                ))}
+              </motion.div>
+            </motion.div>
+            <motion.div className="leadHero__media" variants={softFade}>
               <div className="leadHero__imageFrame">
-                <img
-                  src="/bg_leadhero_section.png"
-                  alt=""
-                  className="leadHero__image"
-                  loading="eager"
-                />
+                <img src="/bg_leadhero_section.png" alt="" className="leadHero__image" loading="eager" />
               </div>
-            </div>
+            </motion.div>
           </div>
         </Container>
-      </section>
+      </motion.section>
 
-      <section className="section doctorBlock aboutHero aboutDoctor">
+      <RevealSection className="section doctorBlock aboutHero aboutDoctor">
         <Container>
           <div className="doctorBlock__card">
-            <div className="doctorBlock__photo">
+            <motion.div className="doctorBlock__photo" variants={softFade}>
               <div className="doctorBlock__imageFrame">
                 <picture><source media="(max-width: 700px)" srcSet="/doctor/doctor-photo.jpg" /><img src="/doctor/doctor-full.jpg" alt="Наталия Шорина" className="doctorBlock__image" loading="lazy" /></picture>
                 <div className="doctorBlock__caption"><strong>Наталия Шорина</strong><span>Врач-дерматокосметолог</span></div>
               </div>
-            </div>
-            <div className="doctorBlock__content">
-              <div className="kicker doctorBlock__kicker">О враче</div>
-              <h2 className="doctorBlock__title">Врач, который умеет сказать:<br />«Вам это не нужно»</h2>
-              <p>Для меня косметология — это не поиск новых недостатков и не стремление изменить человека.</p>
-              <p>Моя задача — понять, что действительно вас беспокоит, оценить состояние кожи и тканей и предложить решение, которое будет полезным, безопасным и обоснованным.</p>
-              <div className="doctorAccent">Иногда это процедура.<br />Иногда — правильно подобранный домашний уход.<br />А иногда лучше ничего не менять.</div>
-              <div className="doctorBlock__divider" />
-              <p><b>Не каждая консультация должна заканчиваться процедурой.</b> Но каждая должна заканчиваться пониманием, что делать дальше.</p>
-              <div className="doctorFacts">{doctorFacts.map((item) => <article className="doctorFact" key={item.title}><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
-            </div>
+            </motion.div>
+            <motion.div className="doctorBlock__content" variants={stagger}>
+              <motion.div className="kicker doctorBlock__kicker" variants={fadeUp}>О враче</motion.div>
+              <motion.h2 className="doctorBlock__title" variants={fadeUp}>Врач, который умеет сказать:<br />«Вам это не нужно»</motion.h2>
+              <motion.p variants={fadeUp}>Для меня косметология — это не поиск новых недостатков и не стремление изменить человека.</motion.p>
+              <motion.p variants={fadeUp}>Моя задача — понять, что действительно вас беспокоит, оценить состояние кожи и тканей и предложить решение, которое будет полезным, безопасным и обоснованным.</motion.p>
+              <motion.div className="doctorAccent" variants={fadeUp}>Иногда это процедура.<br />Иногда — правильно подобранный домашний уход.<br />А иногда лучше ничего не менять.</motion.div>
+              <motion.div className="doctorBlock__divider" variants={fadeUp} />
+              <motion.p variants={fadeUp}><b>Не каждая консультация должна заканчиваться процедурой.</b> Но каждая должна заканчиваться пониманием, что делать дальше.</motion.p>
+              <motion.div className="doctorFacts" variants={stagger}>{doctorFacts.map((item) => <motion.article className="doctorFact" key={item.title} variants={fadeUp} whileHover={cardHover}><h3>{item.title}</h3><p>{item.text}</p></motion.article>)}</motion.div>
+            </motion.div>
           </div>
         </Container>
-      </section>
+      </RevealSection>
 
-      <section className="section requestSection">
+      <RevealSection className="section requestSection">
         <Container>
           <div className="requestSection__card">
             <div className="sectionLabel">С чем можно обратиться</div>
@@ -198,88 +230,81 @@ export default function Home() {
               <h2 className="requestSection__title">Приходите с запросом,<br />не с готовым решением</h2>
               <p className="requestSection__text">Не нужно заранее знать названия процедур. Достаточно рассказать, что изменилось, что беспокоит и какого результата вы хотите избежать. На консультации врач разберётся в причинах и предложит только обоснованные решения.</p>
             </div>
-            <div className="requestGrid">{requestCards.map((item, index) => <article className="requestCard" key={item.title}><span>{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
-            <div className="requestSection__bottom"><Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Обсудить мой запрос с врачом</Button><p>Консультация не обязывает проходить процедуру.</p></div>
+            <motion.div className="requestGrid" variants={stagger}>{requestCards.map((item, index) => <motion.article className="requestCard" key={item.title} variants={fadeUp} whileHover={cardHover}><span>{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p></motion.article>)}</motion.div>
+            <motion.div className="requestSection__bottom" variants={fadeUp}><MotionButtonWrap><Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Обсудить мой запрос с врачом</Button></MotionButtonWrap><p>Консультация не обязывает проходить процедуру.</p></motion.div>
           </div>
         </Container>
-      </section>
+      </RevealSection>
 
-      <section className="section approachSection">
+      <RevealSection className="section approachSection">
         <Container>
           <div className="approachSection__card">
             <div className="sectionLabel">Подход</div>
             <div className="approachSection__top"><h2 className="approachSection__title">Сначала показания.<br />Потом процедура.</h2><div className="approachSection__text"><p>В эстетической медицине важно не просто выбрать метод, а понять, зачем он нужен именно сейчас.</p><p>Каждое назначение должно быть объяснимым: что мы делаем, почему выбираем этот способ, какого результата можем ожидать и какие ограничения важно учесть.</p></div></div>
-            <div className="approachPrinciples">{approachPrinciples.map((item) => <article className="approachPrinciple" key={item.title}><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+            <motion.div className="approachPrinciples" variants={stagger}>{approachPrinciples.map((item) => <motion.article className="approachPrinciple" key={item.title} variants={fadeUp}><h3>{item.title}</h3><p>{item.text}</p></motion.article>)}</motion.div>
           </div>
         </Container>
-      </section>
+      </RevealSection>
 
-      <section className="section serviceDirections">
+      <RevealSection className="section serviceDirections">
         <Container>
           <div className="serviceDirections__card">
             <div className="sectionLabel">Направления</div>
             <div className="serviceDirections__head"><h2 className="serviceDirections__title">Направления,<br />с которыми работает врач</h2><p>Врач работает с кожей, возрастными изменениями, эстетической коррекцией, аппаратными и лазерными методиками. Все направления объединяет бережный подход: без перегруженного результата и назначений «на всякий случай».</p></div>
-            <div className="serviceDirections__grid">{serviceGroups.map((group) => <article className="serviceDirection" key={group.title}><h3>{group.title}</h3><p>{group.text}</p><div className="serviceDirection__tags">{group.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></article>)}</div>
-            <div className="serviceDirections__actions"><Button onClick={() => location.assign("/services")}>Смотреть все услуги</Button></div>
+            <motion.div className="serviceDirections__grid" variants={stagger}>{serviceGroups.map((group) => <motion.article className="serviceDirection" key={group.title} variants={fadeUp} whileHover={cardHover}><h3>{group.title}</h3><p>{group.text}</p><div className="serviceDirection__tags">{group.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></motion.article>)}</motion.div>
+            <motion.div className="serviceDirections__actions" variants={fadeUp}><MotionButtonWrap><Button onClick={() => location.assign("/services")}>Смотреть все услуги</Button></MotionButtonWrap></motion.div>
           </div>
         </Container>
-      </section>
+      </RevealSection>
 
-      <section className="section resultsSection">
+      <RevealSection className="section resultsSection">
         <Container>
           <div className="resultsSection__card">
             <div className="sectionLabel">Результаты</div>
             <div className="resultsSection__head"><div><h2 className="resultsSection__title">Результаты, которые<br />не спорят с внешностью</h2><p>В хорошей косметологии важны не резкие перемены, а точные изменения: свежее лицо, более ровная кожа, мягкая коррекция и сохранение естественных черт.</p></div></div>
-            <div className="worksTabs" aria-label="Категории работ">{workCategories.map((category) => <button key={category} type="button" className={activeWorkCategory === category ? "worksTab worksTab--active" : "worksTab"} onClick={() => setActiveWorkCategory(category)}>{getCategoryTitle(category)}</button>)}</div>
-            <div className="activeResultInfo"><span className="activeResultInfo__icon">✦</span><div className="activeResultInfo__content"><h3>{getCategoryTitle(activeWorkCategory)}</h3><p>{categoryDescriptions[activeWorkCategory]}</p></div>{shouldShowWorkArrows && <div className="carouselControls activeResultInfo__controls"><button type="button" className="carouselArrow" onClick={() => scrollWorks("prev")} aria-label="Предыдущие работы">←</button><button type="button" className="carouselArrow" onClick={() => scrollWorks("next")} aria-label="Следующие работы">→</button></div>}</div>
-            <div className="worksCarousel" ref={worksCarouselRef}>{filteredWorkImages.map((item) => <article className="workCard" key={item.id}><div className="workCard__imageWrap"><img src={item.image} alt={item.category} className="workCard__image" loading="lazy" /></div><div className="workCard__body"><span className="pill">{getCategoryTitle(item.category)}</span></div></article>)}</div>
+            <div className="worksTabs" aria-label="Категории работ">{workCategories.map((category) => <motion.button layout key={category} type="button" className={activeWorkCategory === category ? "worksTab worksTab--active" : "worksTab"} onClick={() => setActiveWorkCategory(category)} whileHover={buttonHover} whileTap={buttonTap}>{getCategoryTitle(category)}</motion.button>)}</div>
+            <AnimatePresence mode="wait">
+              <motion.div className="activeResultInfo" key={activeWorkCategory} initial="hidden" animate="visible" exit="hidden" variants={fadeUp}><span className="activeResultInfo__icon">✦</span><div className="activeResultInfo__content"><h3>{getCategoryTitle(activeWorkCategory)}</h3><p>{categoryDescriptions[activeWorkCategory]}</p></div>{shouldShowWorkArrows && <div className="carouselControls activeResultInfo__controls"><button type="button" className="carouselArrow" onClick={() => scrollWorks("prev")} aria-label="Предыдущие работы">←</button><button type="button" className="carouselArrow" onClick={() => scrollWorks("next")} aria-label="Следующие работы">→</button></div>}</motion.div>
+            </AnimatePresence>
+            <motion.div className="worksCarousel" ref={worksCarouselRef} variants={stagger}>{filteredWorkImages.map((item) => <motion.article className="workCard" key={item.id} variants={fadeUp} whileHover={cardHover}><div className="workCard__imageWrap"><img src={item.image} alt={item.category} className="workCard__image" loading="lazy" /></div><div className="workCard__body"><span className="pill">{getCategoryTitle(item.category)}</span></div></motion.article>)}</motion.div>
           </div>
         </Container>
-      </section>
+      </RevealSection>
 
-      <section className="section reviewsFeature section--alt">
+      <RevealSection className="section reviewsFeature section--alt">
         <Container>
           <div className="featureSplitCard reviewsFeature__card">
-            <div className="featureSplitCard__copy"><div className="sectionLabel">Отзывы</div><h2>После приёма должно становиться спокойнее</h2><p>В отзывах пациенты часто говорят не только о результате, но и о самом ощущении приёма: врач внимательно слушает, подробно объясняет и не торопит с решением.</p><p>Для меня это важная часть работы — чтобы человек понимал, что происходит с кожей, зачем нужна рекомендация и почему иногда лучше не делать лишнего.</p><Button variant="ghost" onClick={() => location.assign("/reviews")}>Все отзывы</Button></div>
-            <div className="reviewsFeature__list">{featuredReviews.map((review) => <article className="reviewFeatureCard" key={review.id}><div className="reviewFeatureCard__head"><div className="reviewFeatureCard__avatar">{review.name?.[0] || "П"}</div><div><h3>{review.name}</h3><span>{review.source} · {"★".repeat(review.rating)}</span></div></div><p>“{review.text}”</p></article>)}</div>
+            <motion.div className="featureSplitCard__copy" variants={stagger}><motion.div className="sectionLabel" variants={fadeUp}>Отзывы</motion.div><motion.h2 variants={fadeUp}>После приёма должно становиться спокойнее</motion.h2><motion.p variants={fadeUp}>В отзывах пациенты часто говорят не только о результате, но и о самом ощущении приёма: врач внимательно слушает, подробно объясняет и не торопит с решением.</motion.p><motion.p variants={fadeUp}>Для меня это важная часть работы — чтобы человек понимал, что происходит с кожей, зачем нужна рекомендация и почему иногда лучше не делать лишнего.</motion.p><MotionButtonWrap><Button variant="ghost" onClick={() => location.assign("/reviews")}>Все отзывы</Button></MotionButtonWrap></motion.div>
+            <motion.div className="reviewsFeature__list" variants={stagger}>{featuredReviews.map((review) => <motion.article className="reviewFeatureCard" key={review.id} variants={fadeUp} whileHover={cardHover}><div className="reviewFeatureCard__head"><div className="reviewFeatureCard__avatar">{review.name?.[0] || "П"}</div><div><h3>{review.name}</h3><span>{review.source} · {"★".repeat(review.rating)}</span></div></div><p>“{review.text}”</p></motion.article>)}</motion.div>
           </div>
         </Container>
-      </section>
+      </RevealSection>
 
-      <section className="section articlesFeature">
+      <RevealSection className="section articlesFeature">
         <Container>
           <div className="featureSplitCard articlesFeature__card">
-            <div className="featureSplitCard__copy"><div className="sectionLabel">Статьи</div><h2>Авторские публикации</h2><p>О коже, возрастных изменениях, современных методиках и принципах, которые помогают принимать взвешенные решения.</p><Link to="/articles" className="btn btn--ghost">Все публикации</Link></div>
-            <div className="articlesFeature__list">{featuredArticles.map((article) => { const title = article.title || article.heading || article.name; const excerpt = article.excerpt || article.announcement || article.description; const image = article.image || article.preview || article.images?.[0]; return <article className="articleFeatureCard" key={article.id}><Link to={`/articles/${article.slug}`} className="articleFeatureCard__image"><img src={image} alt={title} loading="lazy" /></Link><div><span>{article.category}</span><h3><Link to={`/articles/${article.slug}`}>{title}</Link></h3>{excerpt && <p>{excerpt}</p>}<Link to={`/articles/${article.slug}`} className="articleFeatureCard__link">Читать статью →</Link></div></article>; })}</div>
+            <motion.div className="featureSplitCard__copy" variants={stagger}><motion.div className="sectionLabel" variants={fadeUp}>Статьи</motion.div><motion.h2 variants={fadeUp}>Авторские публикации</motion.h2><motion.p variants={fadeUp}>О коже, возрастных изменениях, современных методиках и принципах, которые помогают принимать взвешенные решения.</motion.p><motion.div variants={fadeUp}><Link to="/articles" className="btn btn--ghost">Все публикации</Link></motion.div></motion.div>
+            <motion.div className="articlesFeature__list" variants={stagger}>{featuredArticles.map((article) => { const title = article.title || article.heading || article.name; const excerpt = article.excerpt || article.announcement || article.description; const image = article.image || article.preview || article.images?.[0]; return <motion.article className="articleFeatureCard" key={article.id} variants={fadeUp} whileHover={cardHover}><Link to={`/articles/${article.slug}`} className="articleFeatureCard__image"><img src={image} alt={title} loading="lazy" /></Link><div><span>{article.category}</span><h3><Link to={`/articles/${article.slug}`}>{title}</Link></h3>{excerpt && <p>{excerpt}</p>}<Link to={`/articles/${article.slug}`} className="articleFeatureCard__link">Читать статью →</Link></div></motion.article>; })}</motion.div>
           </div>
         </Container>
-      </section>
+      </RevealSection>
 
-      <section className="section consultationCta section--alt">
+      <RevealSection className="section consultationCta section--alt">
         <Container>
           <div className="consultationCta__card">
-            <div className="consultationCta__content"><div className="sectionLabel">Консультация</div><h2>Не обязательно знать,<br />какая процедура вам нужна</h2><p>Достаточно рассказать, что вас беспокоит. На консультации разберёмся, какие изменения связаны с состоянием кожи, какие можно скорректировать и какие решения будут действительно уместны.</p><div className="consultationCta__actions"><Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Записаться на консультацию</Button><Button variant="ghost" onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Рассказать о своём запросе</Button></div><div className="consultationBenefits">{consultationBenefits.map((item) => <div className="consultationBenefit" key={item.title}><span className={`consultationBenefit__icon consultationBenefit__icon--${item.icon}`} aria-hidden="true" /><p>{item.title}</p></div>)}</div></div>
-            <div className="consultationCta__media">
-              <div className="consultationCta__imagePlaceholder">
-                <img
-                  src="/bg_consultation_section.png"
-                  alt=""
-                  className="consultationCta__image"
-                  loading="lazy"
-                />
-              </div>
-            </div>
+            <motion.div className="consultationCta__content" variants={stagger}><motion.div className="sectionLabel" variants={fadeUp}>Консультация</motion.div><motion.h2 variants={fadeUp}>Не обязательно знать,<br />какая процедура вам нужна</motion.h2><motion.p variants={fadeUp}>Достаточно рассказать, что вас беспокоит. На консультации разберёмся, какие изменения связаны с состоянием кожи, какие можно скорректировать и какие решения будут действительно уместны.</motion.p><motion.div className="consultationCta__actions" variants={fadeUp}><MotionButtonWrap><Button onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Записаться на консультацию</Button></MotionButtonWrap><MotionButtonWrap><Button variant="ghost" onClick={() => window.open("https://t.me/dr_shorina", "_blank")}>Рассказать о своём запросе</Button></MotionButtonWrap></motion.div><motion.div className="consultationBenefits" variants={stagger}>{consultationBenefits.map((item) => <motion.div className="consultationBenefit" key={item.title} variants={fadeUp}><span className={`consultationBenefit__icon consultationBenefit__icon--${item.icon}`} aria-hidden="true" /><p>{item.title}</p></motion.div>)}</motion.div></motion.div>
+            <motion.div className="consultationCta__media" variants={softFade}><div className="consultationCta__imagePlaceholder"><img src="/bg_consultation_section.png" alt="" className="consultationCta__image" loading="lazy" /></div></motion.div>
           </div>
         </Container>
-      </section>
+      </RevealSection>
 
-      <section className="section documentsSection">
+      <RevealSection className="section documentsSection">
         <Container>
           <div className="documentsSection__head"><div className="sectionLabel">Квалификация</div><h2>Образование и квалификация</h2><p>Профессиональная подготовка, дополнительное образование и документы, подтверждающие квалификацию специалиста.</p></div>
-          <div className="certGrid certGrid--preview documentsSection__grid">{certificates.slice(0, 4).map((item) => <button key={item.src} type="button" className="certCard" onClick={() => openCertificateViewer(item)}><div className="certCard__imageWrap"><img src={item.src} alt={item.title} className="certCard__image" loading="lazy" /></div><div className="certCard__body"><span className="certCard__title">{item.title}</span></div></button>)}</div>
-          <div className="certActions"><Button variant="ghost" onClick={() => setIsCertificatesOpen(true)}>Смотреть все документы</Button></div>
+          <motion.div className="certGrid certGrid--preview documentsSection__grid" variants={stagger}>{certificates.slice(0, 4).map((item) => <motion.button key={item.src} type="button" className="certCard" onClick={() => openCertificateViewer(item)} variants={fadeUp} whileHover={cardHover}><div className="certCard__imageWrap"><img src={item.src} alt={item.title} className="certCard__image" loading="lazy" /></div><div className="certCard__body"><span className="certCard__title">{item.title}</span></div></motion.button>)}</motion.div>
+          <motion.div className="certActions" variants={fadeUp}><MotionButtonWrap><Button variant="ghost" onClick={() => setIsCertificatesOpen(true)}>Смотреть все документы</Button></MotionButtonWrap></motion.div>
         </Container>
-      </section>
+      </RevealSection>
 
       {isCertificatesOpen && <div className="certModalOverlay" onClick={() => setIsCertificatesOpen(false)} role="presentation"><div className="certModal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Дипломы и сертификаты"><div className="certModal__header"><div><div className="kicker" style={{ color: "var(--muted)" }}>Квалификация</div><h3 className="h3" style={{ marginTop: 6 }}>Дипломы и сертификаты</h3></div><button type="button" className="certModal__close" onClick={() => setIsCertificatesOpen(false)} aria-label="Закрыть">×</button></div><div className="certGrid">{certificates.map((item) => <button key={item.src} type="button" className="certCard" onClick={() => openCertificateViewer(item)}><div className="certCard__imageWrap"><img src={item.src} alt={item.title} className="certCard__image" loading="lazy" /></div><div className="certCard__body"><span className="certCard__title">{item.title}</span></div></button>)}</div></div></div>}
 

@@ -1,0 +1,245 @@
+/* Final home layout polish: labels, headings, spacing, block alignment */
+
+:root {
+  --home-card-padding: 44px;
+  --home-card-padding-mobile: 22px;
+  --home-title-size: clamp(30px, 3.35vw, 46px);
+  --home-title-size-large: clamp(38px, 5.2vw, 64px);
+  --home-title-size-mobile: clamp(28px, 8.8vw, 38px);
+}
+
+/* 1. Unified mini labels: sentence case, no forced uppercase */
+.sectionLabel,
+.kicker,
+.leadHero__kicker,
+.doctorBlock__kicker,
+.aboutHero__kicker,
+.mobileMenu__eyebrow {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* 2. Unified block inner spacing */
+.requestSection__card,
+.approachSection__card,
+.serviceDirections__card,
+.resultsSection__card,
+.featureSplitCard,
+.consultationCta__card {
+  padding: var(--home-card-padding);
+}
+
+.leadHero__content {
+  padding: 56px 52px;
+}
+
+.doctorBlock__card {
+  padding: 28px;
+}
+
+/* 3. More moderate heading scale */
+.doctorBlock__title,
+.requestSection__title,
+.approachSection__title,
+.serviceDirections__title,
+.resultsSection__title,
+.featureSplitCard__copy h2,
+.consultationCta__content h2,
+.documentsSection__head h2 {
+  font-size: var(--home-title-size);
+  line-height: 1.06;
+  letter-spacing: -0.038em;
+  font-weight: 620;
+}
+
+.leadHero__title {
+  font-size: var(--home-title-size-large);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+/* 4. Top-left anchoring for split blocks */
+.featureSplitCard,
+.consultationCta__card {
+  align-items: start;
+}
+
+.featureSplitCard__copy,
+.consultationCta__content {
+  align-self: start;
+}
+
+.reviewsFeature__list,
+.articlesFeature__list {
+  align-self: start;
+}
+
+.articlesFeature__card,
+.reviewsFeature__card {
+  grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1.38fr);
+}
+
+.featureSplitCard__copy p {
+  max-width: 46ch;
+}
+
+/* 5. Results block: remove empty right area and make header compact */
+.resultsSection__head {
+  display: block;
+  max-width: 720px;
+  margin-bottom: 26px;
+}
+
+.resultsSection__head > div {
+  max-width: 720px;
+}
+
+.resultsSection__title {
+  max-width: 11ch;
+  margin-bottom: 14px;
+}
+
+.resultsSection__head p {
+  max-width: 58ch;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.resultsSection__card .worksTabs {
+  margin-top: 22px;
+}
+
+.activeResultInfo {
+  margin-top: 8px;
+  padding: 18px 20px;
+}
+
+/* 6. Unified block headings and descriptions */
+.requestSection__head,
+.serviceDirections__head {
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 36px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+
+.approachSection__top {
+  gap: 36px;
+  padding-bottom: 34px;
+}
+
+.requestSection__text,
+.serviceDirections__head p,
+.approachSection__text p,
+.resultsSection__head p,
+.documentsSection__head p,
+.consultationCta__content p,
+.featureSplitCard__copy p {
+  font-size: 16px;
+  line-height: 1.68;
+}
+
+/* 7. Reduce oversized vertical density inside cards */
+.requestCard {
+  min-height: 170px;
+  padding: 22px;
+}
+
+.serviceDirection {
+  min-height: 320px;
+  padding: 26px;
+}
+
+.approachPrinciples {
+  margin-top: 32px;
+}
+
+.consultationBenefits {
+  margin-top: 28px;
+}
+
+.documentsSection__head {
+  margin-bottom: 24px;
+}
+
+/* 8. Prevent old uppercase visual style on pills-like labels */
+.sectionLabel::first-letter,
+.kicker::first-letter {
+  text-transform: uppercase;
+}
+
+@media (max-width: 1100px) {
+  .requestSection__head,
+  .serviceDirections__head,
+  .resultsSection__head,
+  .approachSection__top,
+  .featureSplitCard,
+  .consultationCta__card,
+  .articlesFeature__card,
+  .reviewsFeature__card {
+    grid-template-columns: 1fr;
+  }
+
+  .resultsSection__title,
+  .resultsSection__head,
+  .resultsSection__head > div {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .requestSection__card,
+  .approachSection__card,
+  .serviceDirections__card,
+  .resultsSection__card,
+  .featureSplitCard,
+  .consultationCta__card {
+    padding: var(--home-card-padding-mobile);
+  }
+
+  .leadHero__content {
+    padding: 28px 22px;
+  }
+
+  .doctorBlock__card {
+    padding: 18px;
+  }
+
+  .leadHero__title,
+  .doctorBlock__title,
+  .requestSection__title,
+  .approachSection__title,
+  .serviceDirections__title,
+  .resultsSection__title,
+  .featureSplitCard__copy h2,
+  .consultationCta__content h2,
+  .documentsSection__head h2 {
+    font-size: var(--home-title-size-mobile);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .resultsSection__title {
+    max-width: 12ch;
+  }
+
+  .requestSection__head,
+  .serviceDirections__head,
+  .approachSection__top {
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+
+  .requestSection__text,
+  .serviceDirections__head p,
+  .approachSection__text p,
+  .resultsSection__head p,
+  .documentsSection__head p,
+  .consultationCta__content p,
+  .featureSplitCard__copy p {
+    font-size: 15px;
+    line-height: 1.62;
+  }
+}

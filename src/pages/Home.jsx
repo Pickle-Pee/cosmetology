@@ -18,6 +18,7 @@ import {
 } from "../shared/motion.js";
 import "../styles/homeSections.css";
 import "../styles/homeFixes.css";
+import "../styles/homeLayoutPolish.css";
 
 const certificates = [
   { src: "/certificates/cert-1.jpg", title: "Диплом" },

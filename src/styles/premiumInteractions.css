@@ -1,0 +1,261 @@
+/* Global premium interaction system */
+
+:root {
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-fast: 0.22s;
+  --motion-medium: 0.34s;
+  --motion-slow: 0.55s;
+  --interactive-shadow: 0 18px 44px rgba(38, 52, 50, 0.1);
+  --interactive-shadow-soft: 0 12px 28px rgba(38, 52, 50, 0.075);
+}
+
+button,
+a,
+.btn,
+.nav__link,
+.header__cta,
+.mobileMenu__link,
+.card,
+.certCard,
+.articleCard,
+.workCard,
+.requestCard,
+.serviceDirection,
+.reviewFeatureCard,
+.articleFeatureCard,
+.doctorFact,
+.worksTab,
+.carouselArrow {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+.btn,
+.nav__link,
+.header__cta,
+.mobileMenu__link,
+.link,
+.articleCard__link,
+.articleFeatureCard__link,
+.carouselArrow,
+.worksTab {
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    opacity var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-medium) var(--motion-ease),
+    filter var(--motion-medium) var(--motion-ease);
+}
+
+.btn,
+.header__cta,
+.mobileMenu__link,
+.carouselArrow,
+.worksTab {
+  will-change: transform;
+}
+
+.btn:hover,
+.header__cta:hover,
+.mobileMenu__link:hover,
+.carouselArrow:hover,
+.worksTab:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active,
+.header__cta:active,
+.mobileMenu__link:active,
+.carouselArrow:active,
+.worksTab:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 0 30%, rgba(255, 255, 255, 0.36) 46%, transparent 62% 100%);
+  transform: translateX(-120%);
+  transition: transform 0.72s var(--motion-ease);
+}
+
+.btn--primary:hover::before {
+  transform: translateX(120%);
+}
+
+.btn--ghost:hover {
+  box-shadow: var(--interactive-shadow-soft);
+}
+
+.link,
+.articleCard__link,
+.articleFeatureCard__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.link::after,
+.articleCard__link::after,
+.articleFeatureCard__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--motion-medium) var(--motion-ease), opacity var(--motion-medium) var(--motion-ease);
+}
+
+.link:hover,
+.articleCard__link:hover,
+.articleFeatureCard__link:hover {
+  text-decoration: none;
+  opacity: 0.92;
+}
+
+.link:hover::after,
+.articleCard__link:hover::after,
+.articleFeatureCard__link:hover::after {
+  opacity: 0.65;
+  transform: scaleX(1);
+}
+
+.card,
+.certCard,
+.articleCard,
+.workCard,
+.requestCard,
+.serviceDirection,
+.reviewFeatureCard,
+.articleFeatureCard,
+.doctorFact {
+  transition:
+    transform var(--motion-medium) var(--motion-ease),
+    box-shadow var(--motion-medium) var(--motion-ease),
+    border-color var(--motion-medium) var(--motion-ease),
+    background-color var(--motion-medium) var(--motion-ease),
+    filter var(--motion-medium) var(--motion-ease);
+  will-change: transform;
+}
+
+.card:hover,
+.certCard:hover,
+.articleCard:hover,
+.workCard:hover,
+.requestCard:hover,
+.serviceDirection:hover,
+.reviewFeatureCard:hover,
+.articleFeatureCard:hover,
+.doctorFact:hover {
+  transform: translateY(-3px);
+  border-color: rgba(147, 199, 193, 0.34);
+  box-shadow: var(--interactive-shadow);
+}
+
+.card:active,
+.certCard:active,
+.articleCard:active,
+.workCard:active,
+.requestCard:active,
+.serviceDirection:active,
+.reviewFeatureCard:active,
+.articleFeatureCard:active,
+.doctorFact:active {
+  transform: translateY(-1px);
+}
+
+.articleCard__image,
+.articleFeatureCard__image img,
+.workCard__image,
+.certCard__image,
+.reviewFeatureCard__avatar,
+.doctorBlock__image,
+.leadHero__image,
+.consultationCta__image {
+  transition:
+    transform var(--motion-slow) var(--motion-ease),
+    filter var(--motion-slow) var(--motion-ease),
+    opacity var(--motion-slow) var(--motion-ease);
+}
+
+.articleCard:hover .articleCard__image,
+.articleFeatureCard:hover .articleFeatureCard__image img,
+.workCard:hover .workCard__image,
+.certCard:hover .certCard__image {
+  transform: translateY(-2px);
+  filter: saturate(1.03) contrast(1.02);
+}
+
+.nav__link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: rgba(147, 199, 193, 0.1);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--motion-medium) var(--motion-ease), transform var(--motion-medium) var(--motion-ease);
+}
+
+.nav__link:hover::before,
+.nav__link.is-active::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sectionLabel,
+.pill,
+.badge {
+  transition:
+    transform var(--motion-medium) var(--motion-ease),
+    background-color var(--motion-medium) var(--motion-ease),
+    border-color var(--motion-medium) var(--motion-ease),
+    color var(--motion-medium) var(--motion-ease);
+}
+
+.card:hover .pill,
+.workCard:hover .pill,
+.reviewFeatureCard:hover .reviewFeatureCard__avatar {
+  transform: translateY(-1px);
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid rgba(147, 199, 193, 0.55);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

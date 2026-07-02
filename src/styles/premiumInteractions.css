@@ -240,6 +240,90 @@ button,
   transform: translateY(-1px);
 }
 
+/* Mobile menu premium motion layer */
+.mobileMenu {
+  will-change: opacity;
+}
+
+.mobileMenu__backdrop {
+  background: rgba(31, 42, 42, 0.42);
+}
+
+.mobileMenu__panel {
+  will-change: transform, opacity, filter;
+  transform-origin: bottom center;
+  background:
+    radial-gradient(circle at top left, rgba(147, 199, 193, 0.14), transparent 34%),
+    linear-gradient(180deg, rgba(255, 252, 248, 0.98) 0%, rgba(245, 238, 231, 0.98) 100%);
+  backdrop-filter: blur(18px);
+}
+
+.mobileMenu__link {
+  position: relative;
+  overflow: hidden;
+}
+
+.mobileMenu__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(147, 199, 193, 0.12), rgba(220, 197, 174, 0.16));
+  opacity: 0;
+  transform: translateY(5px);
+  transition:
+    opacity var(--motion-medium) var(--motion-ease),
+    transform var(--motion-medium) var(--motion-ease);
+}
+
+.mobileMenu__link:hover::before,
+.mobileMenu__link.is-active::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobileMenu__link span {
+  position: relative;
+  z-index: 1;
+}
+
+.mobileMenu__linkArrow {
+  transition: transform var(--motion-medium) var(--motion-ease), color var(--motion-medium) var(--motion-ease);
+}
+
+.mobileMenu__link:hover .mobileMenu__linkArrow {
+  transform: translateX(3px);
+  color: var(--text);
+}
+
+.mobileMenu__close,
+.burger {
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-medium) var(--motion-ease);
+}
+
+.mobileMenu__close:hover,
+.burger:hover {
+  border-color: rgba(147, 199, 193, 0.34);
+  box-shadow: var(--interactive-shadow-soft);
+}
+
+.mobileMenu__phone {
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease);
+}
+
+.mobileMenu__phone:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--text);
+}
+
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,

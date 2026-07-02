@@ -264,6 +264,36 @@
   transform: translateY(1px);
 }
 
+/* 7. Premium hero motion polish */
+.leadHero__title {
+  overflow: hidden;
+}
+
+.leadHero__imageFrame {
+  transform-origin: center;
+  animation: heroFrameSettle 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.leadHero__image {
+  transform-origin: center;
+  animation:
+    heroImageSettle 1.25s cubic-bezier(0.22, 1, 0.36, 1) both,
+    heroImageDrift 18s cubic-bezier(0.22, 1, 0.36, 1) 1.25s infinite;
+  will-change: transform, filter;
+}
+
+.leadHero__card::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 22%, rgba(255, 255, 255, 0.42), transparent 22%),
+    radial-gradient(circle at 18% 72%, rgba(147, 199, 193, 0.11), transparent 26%);
+  opacity: 0;
+  animation: heroGlow 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
 @keyframes workCardReveal {
   from {
     opacity: 0;
@@ -274,6 +304,57 @@
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+  }
+}
+
+@keyframes heroFrameSettle {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroImageSettle {
+  from {
+    transform: scale(1.018);
+    filter: blur(8px) saturate(0.96);
+  }
+  to {
+    transform: scale(1);
+    filter: blur(0) saturate(1);
+  }
+}
+
+@keyframes heroImageDrift {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.014);
+  }
+}
+
+@keyframes heroGlow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leadHero__image,
+  .leadHero__imageFrame,
+  .leadHero__card::before,
+  .workCard {
+    animation: none;
   }
 }
 

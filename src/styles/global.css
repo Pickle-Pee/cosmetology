@@ -19,7 +19,7 @@
 }
 
 @font-face {
-  font-family: "IDM Plex";
+  font-family: "IBM Plex";
   src: url("fonts/IBMPlex/IBMPlexSans-VariableFont_wdth,wght.ttf");
 }
 
@@ -75,7 +75,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "IDM Plex";
+  font-family: "IBM Plex";
   color: var(--text);
   background:
     radial-gradient(circle at top left, rgba(147, 199, 193, 0.12), transparent 30%),
@@ -2814,7 +2814,7 @@ img {
   letter-spacing: -0.055em;
   font-weight: 600;
   color: var(--text);
-  font-family: "IDM Plex", serif;
+  font-family: "IBM Plex", serif;
 }
 
 .leadHero__text {

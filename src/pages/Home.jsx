@@ -116,8 +116,8 @@ export default function Home() {
   const [isCertificatesOpen, setIsCertificatesOpen] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
-  const featuredReviews = reviews.filter((review) => review.featured).slice(0, 2);
-  const featuredArticles = articles.slice(0, 3);
+  const featuredReviews = reviews.filter((review) => review.featured).slice(0, 3);
+  const featuredArticles = articles.slice(0, 2);
 
   const preferredWorkCategories = [
     "Эстетическая косметология",
@@ -213,8 +213,9 @@ export default function Home() {
               <motion.div className="kicker doctorBlock__kicker" variants={fadeUp}>О враче</motion.div>
               <motion.h2 className="doctorBlock__title" variants={fadeUp}>Врач, который умеет сказать:<br />«Вам это не нужно»</motion.h2>
               <motion.p variants={fadeUp}>Для меня косметология — это не поиск новых недостатков и не стремление изменить человека.</motion.p>
-              <motion.p variants={fadeUp}>Моя задача — понять, что действительно вас беспокоит, оценить состояние кожи и тканей и предложить решение, которое будет полезным, безопасным и обоснованным.</motion.p>
-              <motion.div className="doctorAccent" variants={fadeUp}>Иногда это процедура.<br />Иногда — правильно подобранный домашний уход.<br />А иногда лучше ничего не менять.</motion.div>
+              {/* <motion.p variants={fadeUp}>Моя задача — понять, что действительно вас беспокоит, оценить состояние кожи и тканей и предложить решение, которое будет полезным, безопасным и обоснованным.</motion.p> */}
+              <motion.p variants={fadeUp}>Иногда это процедура.<br />Иногда — правильно подобранный домашний уход.<br />А иногда лучше ничего не менять.</motion.p>
+              <motion.div className="doctorAccent" variants={fadeUp}>Моя задача — понять, что действительно вас беспокоит, оценить состояние кожи и тканей и предложить решение, которое будет полезным, безопасным и обоснованным.</motion.div>
               <motion.div className="doctorBlock__divider" variants={fadeUp} />
               <motion.p variants={fadeUp}><b>Не каждая консультация должна заканчиваться процедурой.</b> Но каждая должна заканчиваться пониманием, что делать дальше.</motion.p>
               <motion.div className="doctorFacts" variants={stagger}>{doctorFacts.map((item) => <motion.article className="doctorFact" key={item.title} variants={fadeUp} whileHover={cardHover}><h3>{item.title}</h3><p>{item.text}</p></motion.article>)}</motion.div>
@@ -262,7 +263,7 @@ export default function Home() {
         <Container>
           <div className="resultsSection__card">
             <div className="sectionLabel">Результаты</div>
-            <div className="resultsSection__head"><div><h2 className="resultsSection__title">Результаты, которые<br />не спорят с внешностью</h2><p>В хорошей косметологии важны не резкие перемены, а точные изменения: свежее лицо, более ровная кожа, мягкая коррекция и сохранение естественных черт.</p></div></div>
+            <div className="resultsSection__head"><div className="serviceDirections__head"><h2 className="resultsSection__title">Результаты, которые<br />не спорят с внешностью</h2><p>В хорошей косметологии важны не резкие перемены, а точные изменения: свежее лицо, более ровная кожа, мягкая коррекция и сохранение естественных черт.</p></div></div>
             <div className="worksTabs" aria-label="Категории работ">{workCategories.map((category) => <motion.button layout key={category} type="button" className={activeWorkCategory === category ? "worksTab worksTab--active" : "worksTab"} onClick={() => setActiveWorkCategory(category)} whileHover={buttonHover} whileTap={buttonTap}>{getCategoryTitle(category)}</motion.button>)}</div>
             <AnimatePresence mode="wait">
               <motion.div className="activeResultInfo" key={activeWorkCategory} initial="hidden" animate="visible" exit="hidden" variants={fadeUp}><span className="activeResultInfo__icon">✦</span><div className="activeResultInfo__content"><h3>{getCategoryTitle(activeWorkCategory)}</h3><p>{categoryDescriptions[activeWorkCategory]}</p></div>{shouldShowWorkArrows && <div className="carouselControls activeResultInfo__controls"><button type="button" className="carouselArrow" onClick={() => scrollWorks("prev")} aria-label="Предыдущие работы">←</button><button type="button" className="carouselArrow" onClick={() => scrollWorks("next")} aria-label="Следующие работы">→</button></div>}</motion.div>

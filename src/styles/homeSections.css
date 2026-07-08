@@ -250,7 +250,7 @@
 .serviceDirections__head,
 .resultsSection__head {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: 48px;
   align-items: end;
   margin-bottom: 32px;
@@ -583,7 +583,7 @@
   .requestSection__head,
   .approachSection__top,
   .serviceDirections__head,
-  .resultsSection__head,
+  /* .resultsSection__head, */
   .featureSplitCard,
   .consultationCta__card {
     grid-template-columns: 1fr;

@@ -1,0 +1,215 @@
+/* Home training block */
+
+.trainingSection__card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+  gap: 44px;
+  align-items: stretch;
+  padding: var(--home-card-padding, 44px);
+  border: 1px solid rgba(220, 197, 174, 0.32);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at top left, rgba(147, 199, 193, 0.1), transparent 28%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 243, 237, 0.94));
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.trainingSection__content {
+  align-self: start;
+  max-width: 620px;
+}
+
+.trainingSection__title {
+  margin: 0 0 18px;
+  font-size: var(--home-title-size, clamp(30px, 3.35vw, 46px));
+  line-height: 1.06;
+  letter-spacing: -0.038em;
+  font-weight: 620;
+}
+
+.trainingSection__content p {
+  margin: 0 0 16px;
+  color: var(--text-soft);
+  font-size: 16px;
+  line-height: 1.68;
+}
+
+.trainingFeatures {
+  display: grid;
+  gap: 10px;
+  margin: 28px 0 28px;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(220, 197, 174, 0.28);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.trainingFeature {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  color: var(--text-soft);
+  line-height: 1.45;
+}
+
+.trainingFeature__icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: rgba(147, 199, 193, 0.12);
+  color: var(--brand-strong);
+}
+
+.trainingFeature__icon::before,
+.trainingFeature__icon::after {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.trainingFeature__icon--method::before {
+  width: 15px;
+  height: 15px;
+  border: 1.7px solid currentColor;
+  border-radius: 5px;
+}
+
+.trainingFeature__icon--method::after {
+  width: 6px;
+  height: 6px;
+  border-right: 1.7px solid currentColor;
+  border-bottom: 1.7px solid currentColor;
+  transform: rotate(-45deg);
+  right: 9px;
+  top: 13px;
+}
+
+.trainingFeature__icon--diagnostic::before {
+  width: 16px;
+  height: 16px;
+  border: 1.7px solid currentColor;
+  border-radius: 999px;
+}
+
+.trainingFeature__icon--diagnostic::after {
+  width: 7px;
+  height: 1.7px;
+  background: currentColor;
+  transform: rotate(45deg);
+  right: 8px;
+  bottom: 9px;
+}
+
+.trainingFeature__icon--protocol::before {
+  width: 14px;
+  height: 18px;
+  border: 1.7px solid currentColor;
+  border-radius: 4px;
+}
+
+.trainingFeature__icon--protocol::after {
+  width: 8px;
+  height: 1.7px;
+  background: currentColor;
+  box-shadow: 0 5px 0 currentColor;
+}
+
+.trainingFeature__icon--natural::before {
+  width: 15px;
+  height: 15px;
+  border-left: 1.7px solid currentColor;
+  border-bottom: 1.7px solid currentColor;
+  border-radius: 0 0 0 12px;
+  transform: rotate(-14deg);
+}
+
+.trainingFeature__icon--natural::after {
+  width: 8px;
+  height: 8px;
+  border-top: 1.7px solid currentColor;
+  border-right: 1.7px solid currentColor;
+  transform: rotate(12deg);
+  right: 8px;
+  top: 8px;
+}
+
+.trainingFeature__icon--safety::before {
+  width: 16px;
+  height: 18px;
+  border: 1.7px solid currentColor;
+  border-radius: 9px 9px 6px 6px;
+  clip-path: polygon(50% 0, 100% 18%, 88% 100%, 12% 100%, 0 18%);
+}
+
+.trainingFeature__icon--safety::after {
+  width: 8px;
+  height: 5px;
+  border-left: 1.7px solid currentColor;
+  border-bottom: 1.7px solid currentColor;
+  transform: rotate(-45deg);
+  top: 13px;
+}
+
+.trainingSection__media {
+  min-height: 500px;
+  border-radius: 30px;
+  overflow: hidden;
+  background: #f8f4ef;
+}
+
+.trainingSection__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.doctorBlock__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+@media (max-width: 1100px) {
+  .trainingSection__card {
+    grid-template-columns: 1fr;
+  }
+
+  .trainingSection__content {
+    max-width: none;
+  }
+
+  .trainingSection__media {
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 760px) {
+  .trainingSection__card {
+    padding: var(--home-card-padding-mobile, 22px);
+    border-radius: 26px;
+    gap: 24px;
+  }
+
+  .trainingSection__title {
+    font-size: var(--home-title-size-mobile, clamp(28px, 8.8vw, 38px));
+    line-height: 1.08;
+  }
+
+  .trainingFeatures {
+    padding: 14px;
+  }
+
+  .trainingSection__media {
+    min-height: 280px;
+    border-radius: 24px;
+  }
+}

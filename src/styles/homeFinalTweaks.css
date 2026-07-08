@@ -82,6 +82,45 @@
   align-items: flex-start;
 }
 
+/* Footer layout polish */
+.footer__inner {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
+  align-items: center;
+  gap: 32px;
+  padding: 24px 0;
+}
+
+.footer__info {
+  min-width: 0;
+}
+
+.footer__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer__link {
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer__link:hover {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.footer__copyright {
+  justify-self: end;
+  white-space: nowrap;
+}
+
 @media (max-width: 1100px) {
   .consultationCta__imagePlaceholder {
     height: auto;
@@ -99,6 +138,17 @@
   .serviceDirection__tags {
     min-height: 0;
   }
+
+  .footer__inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+
+  .footer__copyright {
+    justify-self: center;
+  }
 }
 
 @media (max-width: 760px) {
@@ -113,5 +163,9 @@
   .consultationCta__imagePlaceholder,
   .consultationCta__image {
     min-height: 280px;
+  }
+
+  .footer__nav {
+    gap: 12px 16px;
   }
 }

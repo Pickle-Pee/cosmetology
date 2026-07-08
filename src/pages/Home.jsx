@@ -22,13 +22,13 @@ import "../styles/homeTraining.css";
 
 const certificates = [
   { src: "/certificates/cert-1.jpg", title: "Диплом" },
-  { src: "/certificates/cert-2.jpg", title: "Сертификат" },
-  { src: "/certificates/cert-3.jpg", title: "Повышение квалификации" },
-  { src: "/certificates/cert-4.jpg", title: "Косметология" },
-  { src: "/certificates/cert-5.jpg", title: "Инъекционные методики" },
-  { src: "/certificates/cert-6.jpg", title: "Аппаратные методики" },
-  { src: "/certificates/cert-7.jpg", title: "Профессиональное обучение" },
-  { src: "/certificates/cert-8.jpg", title: "Сертификат тренера" },
+  { src: "/certificates/cert-2.jpg", title: "Диплом" },
+  { src: "/certificates/cert-3.jpg", title: "Сертификат" },
+  { src: "/certificates/cert-4.jpg", title: "Диплом" },
+  { src: "/certificates/cert-5.jpg", title: "Удостоверение" },
+  { src: "/certificates/cert-6.jpg", title: "Удостоверение" },
+  { src: "/certificates/cert-7.jpg", title: "Сертификат" },
+  { src: "/certificates/cert-8.jpg", title: "Сертификат" },
 ];
 
 const doctorFacts = [

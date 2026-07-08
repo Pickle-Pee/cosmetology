@@ -1,0 +1,94 @@
+/* Final home tweaks: consultation alignment, image fit, service tag alignment */
+
+.consultationCta__card {
+  align-items: stretch;
+}
+
+.consultationCta__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.consultationBenefits {
+  align-items: start;
+}
+
+.consultationBenefit {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.consultationBenefit__icon {
+  flex: 0 0 30px;
+  margin-top: 0;
+}
+
+.consultationBenefit p {
+  margin: 1px 0 0;
+  line-height: 1.45;
+}
+
+.consultationCta__media {
+  display: flex;
+  align-items: stretch;
+  min-height: 100%;
+}
+
+.consultationCta__imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  background: #f8f4ef;
+}
+
+.consultationCta__image {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.serviceDirection {
+  justify-content: flex-start;
+}
+
+.serviceDirection__tags {
+  margin-top: 34px;
+  padding-top: 0;
+  min-height: 124px;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+@media (max-width: 1100px) {
+  .consultationCta__imagePlaceholder {
+    height: auto;
+    min-height: 360px;
+  }
+
+  .consultationCta__image {
+    min-height: 360px;
+  }
+
+  .serviceDirection__tags {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .consultationBenefits {
+    gap: 14px;
+  }
+
+  .consultationBenefit {
+    align-items: flex-start;
+  }
+
+  .consultationCta__imagePlaceholder,
+  .consultationCta__image {
+    min-height: 280px;
+  }
+}

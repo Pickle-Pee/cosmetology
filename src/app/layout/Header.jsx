@@ -6,10 +6,12 @@ import { buttonHover, buttonTap, ease } from "../../shared/motion.js";
 
 const nav = [
   { to: "/", label: "Главная" },
+  { to: "/about", label: "О враче" },
   { to: "/services", label: "Услуги" },
-  { to: "/prices", label: "Прайс" },
+  // { to: "/prices", label: "Прайс" },
+  { to: "/training", label: "Обучение" },
   { to: "/articles", label: "Статьи" },
-  { to: "/reviews", label: "Отзывы" },
+  // { to: "/reviews", label: "Отзывы" },
   { to: "/contacts", label: "Контакты" },
 ];
 

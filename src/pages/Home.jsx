@@ -18,6 +18,7 @@ import {
 import "../styles/homeSections.css";
 import "../styles/homeFixes.css";
 import "../styles/homeLayoutPolish.css";
+import "../styles/homeTraining.css";
 
 const certificates = [
   { src: "/certificates/cert-1.jpg", title: "Диплом" },
@@ -87,6 +88,14 @@ const consultationBenefits = [
   { icon: "check", title: "Только по показаниям" },
   { icon: "message", title: "Подробные объяснения и честные рекомендации" },
   { icon: "person", title: "Индивидуальный подход к вашей коже и задачам" },
+];
+
+const trainingItems = [
+  { icon: "method", text: "Аппаратные и инъекционные методики" },
+  { icon: "diagnostic", text: "Разбор показаний и противопоказаний" },
+  { icon: "protocol", text: "Практические протоколы" },
+  { icon: "natural", text: "Работа с естественным результатом" },
+  { icon: "safety", text: "Безопасность и врачебное мышление" },
 ];
 
 function RevealSection({ className, children }) {
@@ -217,6 +226,32 @@ export default function Home() {
               <motion.div className="doctorBlock__divider" variants={fadeUp} />
               <motion.p variants={fadeUp}><b>Не каждая консультация должна заканчиваться процедурой.</b> Но каждая должна заканчиваться пониманием, что делать дальше.</motion.p>
               <motion.div className="doctorFacts" variants={stagger}>{doctorFacts.map((item) => <motion.article className="doctorFact" key={item.title} variants={fadeUp} whileHover={cardHover}><h3>{item.title}</h3><p>{item.text}</p></motion.article>)}</motion.div>
+              <motion.div className="doctorBlock__actions" variants={fadeUp}><MotionButtonWrap><Link to="/about" className="btn btn--ghost">Подробнее о враче</Link></MotionButtonWrap></motion.div>
+            </motion.div>
+          </div>
+        </Container>
+      </RevealSection>
+
+      <RevealSection className="section trainingSection">
+        <Container>
+          <div className="trainingSection__card">
+            <motion.div className="trainingSection__content" variants={stagger}>
+              <motion.div className="sectionLabel" variants={fadeUp}>Для врачей</motion.div>
+              <motion.h2 className="trainingSection__title" variants={fadeUp}>Обучение врачей-косметологов</motion.h2>
+              <motion.p variants={fadeUp}>Я провожу практические семинары и мастер-классы по аппаратным и инъекционным методикам для врачей-косметологов.</motion.p>
+              <motion.p variants={fadeUp}>В основе обучения — не только техника процедуры, но и клиническая логика: показания, безопасность, ограничения, работа с ожиданиями пациента и естественный результат.</motion.p>
+              <motion.div className="trainingFeatures" variants={stagger}>
+                {trainingItems.map((item) => (
+                  <motion.div className="trainingFeature" key={item.text} variants={fadeUp}>
+                    <span className={`trainingFeature__icon trainingFeature__icon--${item.icon}`} aria-hidden="true" />
+                    <span>{item.text}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+              <motion.div variants={fadeUp}><MotionButtonWrap><Link to="/training" className="btn btn--primary">Подробнее об обучении</Link></MotionButtonWrap></motion.div>
+            </motion.div>
+            <motion.div className="trainingSection__media" variants={softFade}>
+              <img src="/training_bg.png" alt="Обучение врачей-косметологов" className="trainingSection__image" loading="lazy" />
             </motion.div>
           </div>
         </Container>

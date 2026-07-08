@@ -335,7 +335,7 @@ export default function Home() {
 
       <RevealSection className="section documentsSection">
         <Container>
-          <div className="documentsSection__head"><div className="sectionLabel">Квалификация</div><h2>Моё образование и квалификация</h2><p>Профессиональная подготовка, дополнительное образование и документы, подтверждающие мою квалификацию.</p></div>
+          <div className="documentsSection__head"><div className="sectionLabel">Квалификация</div><h2>Образование и квалификация</h2><p>Профессиональная подготовка, дополнительное образование и документы, подтверждающие мою квалификацию.</p></div>
           <motion.div className="certGrid certGrid--preview documentsSection__grid" variants={stagger}>{certificates.slice(0, 4).map((item) => <motion.button key={item.src} type="button" className="certCard" onClick={() => openCertificateViewer(item)} variants={fadeUp} whileHover={cardHover}><div className="certCard__imageWrap"><img src={item.src} alt={item.title} className="certCard__image" loading="lazy" /></div><div className="certCard__body"><span className="certCard__title">{item.title}</span></div></motion.button>)}</motion.div>
           <motion.div className="certActions" variants={fadeUp}><MotionButtonWrap><Button variant="ghost" onClick={() => setIsCertificatesOpen(true)}>Смотреть все документы</Button></MotionButtonWrap></motion.div>
         </Container>

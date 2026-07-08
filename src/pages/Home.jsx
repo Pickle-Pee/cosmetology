@@ -221,8 +221,8 @@ export default function Home() {
               <motion.div className="kicker doctorBlock__kicker" variants={fadeUp}>О враче</motion.div>
               <motion.h2 className="doctorBlock__title" variants={fadeUp}>Я умею сказать:<br />«Вам это не нужно»</motion.h2>
               <motion.p variants={fadeUp}>Для меня косметология — это не поиск новых недостатков и не стремление изменить человека.</motion.p>
-              <motion.p variants={fadeUp}>Иногда это процедура.<br />Иногда — правильно подобранный домашний уход.<br />А иногда лучше ничего не менять.</motion.p>
               <motion.div className="doctorAccent" variants={fadeUp}>Моя задача — понять, что действительно вас беспокоит, оценить состояние кожи и тканей и предложить решение, которое будет полезным, безопасным и обоснованным.</motion.div>
+              <motion.p variants={fadeUp}>Иногда это процедура.<br />Иногда — правильно подобранный домашний уход.<br />А иногда лучше ничего не менять.</motion.p>
               <motion.div className="doctorBlock__divider" variants={fadeUp} />
               <motion.p variants={fadeUp}><b>Не каждая консультация должна заканчиваться процедурой.</b> Но каждая должна заканчиваться пониманием, что делать дальше.</motion.p>
               <motion.div className="doctorFacts" variants={stagger}>{doctorFacts.map((item) => <motion.article className="doctorFact" key={item.title} variants={fadeUp} whileHover={cardHover}><h3>{item.title}</h3><p>{item.text}</p></motion.article>)}</motion.div>
@@ -262,7 +262,7 @@ export default function Home() {
           <div className="requestSection__card">
             <div className="sectionLabel">С чем можно обратиться</div>
             <div className="requestSection__head">
-              <h2 className="requestSection__title">Приходите ко мне с запросом,<br />не с готовым решением</h2>
+              <h2 className="requestSection__title">Приходите с запросом,<br />не с готовым решением</h2>
               <p className="requestSection__text">Не нужно заранее знать названия процедур. Достаточно рассказать, что изменилось, что беспокоит и какого результата вы хотите избежать. На консультации я разберусь в причинах и предложу только обоснованные решения.</p>
             </div>
             <motion.div className="requestGrid" variants={stagger}>{requestCards.map((item, index) => <motion.article className="requestCard" key={item.title} variants={fadeUp} whileHover={cardHover}><span>{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p></motion.article>)}</motion.div>
@@ -275,7 +275,7 @@ export default function Home() {
         <Container>
           <div className="approachSection__card">
             <div className="sectionLabel">Подход</div>
-            <div className="approachSection__top"><h2 className="approachSection__title">Сначала я смотрю<br />на показания</h2><div className="approachSection__text"><p>В эстетической медицине важно не просто выбрать метод, а понять, зачем он нужен именно сейчас.</p><p>Каждое назначение должно быть объяснимым: что я делаю, почему выбираю этот способ, какого результата можно ожидать и какие ограничения важно учесть.</p></div></div>
+            <div className="approachSection__top"><h2 className="approachSection__title">Сначала показания.<br />Потом процедура</h2><div className="approachSection__text"><p>В эстетической медицине важно не просто выбрать метод, а понять, зачем он нужен именно сейчас.</p><p>Каждое назначение должно быть объяснимым: что я делаю, почему выбираю этот способ, какого результата можно ожидать и какие ограничения важно учесть.</p></div></div>
             <motion.div className="approachPrinciples" variants={stagger}>{approachPrinciples.map((item) => <motion.article className="approachPrinciple" key={item.title} variants={fadeUp}><h3>{item.title}</h3><p>{item.text}</p></motion.article>)}</motion.div>
           </div>
         </Container>
@@ -296,7 +296,7 @@ export default function Home() {
         <Container>
           <div className="resultsSection__card">
             <div className="sectionLabel">Результаты</div>
-            <div className="resultsSection__head"><h2 className="resultsSection__title">Мои результаты<br />не спорят с внешностью</h2><p>В хорошей косметологии важны не резкие перемены, а точные изменения: свежее лицо, более ровная кожа, мягкая коррекция и сохранение естественных черт.</p></div>
+            <div className="resultsSection__head"><h2 className="resultsSection__title">Результаты, которые<br />не спорят с внешностью</h2><p>В хорошей косметологии важны не резкие перемены, а точные изменения: свежее лицо, более ровная кожа, мягкая коррекция и сохранение естественных черт.</p></div>
             <div className="worksTabs" aria-label="Категории работ">{workCategories.map((category) => <motion.button layout key={category} type="button" className={activeWorkCategory === category ? "worksTab worksTab--active" : "worksTab"} onClick={() => setActiveWorkCategory(category)} whileHover={buttonHover} whileTap={buttonTap}>{getCategoryTitle(category)}</motion.button>)}</div>
             <AnimatePresence mode="wait">
               <motion.div className="activeResultInfo" key={activeWorkCategory} initial="hidden" animate="visible" exit="hidden" variants={fadeUp}><span className="activeResultInfo__icon">✦</span><div className="activeResultInfo__content"><h3>{getCategoryTitle(activeWorkCategory)}</h3><p>{categoryDescriptions[activeWorkCategory]}</p></div>{shouldShowWorkArrows && <div className="carouselControls activeResultInfo__controls"><button type="button" className="carouselArrow" onClick={() => scrollWorks("prev")} aria-label="Предыдущие работы">←</button><button type="button" className="carouselArrow" onClick={() => scrollWorks("next")} aria-label="Следующие работы">→</button></div>}</motion.div>
@@ -309,7 +309,7 @@ export default function Home() {
       <RevealSection className="section reviewsFeature section--alt">
         <Container>
           <div className="featureSplitCard reviewsFeature__card">
-            <motion.div className="featureSplitCard__copy" variants={stagger}><motion.div className="sectionLabel" variants={fadeUp}>Отзывы</motion.div><motion.h2 variants={fadeUp}>После приёма со мной должно становиться спокойнее</motion.h2><motion.p variants={fadeUp}>В отзывах пациенты часто говорят не только о результате, но и о самом ощущении приёма: я внимательно слушаю, подробно объясняю и не тороплю с решением.</motion.p><motion.p variants={fadeUp}>Для меня это важная часть работы — чтобы человек понимал, что происходит с кожей, зачем нужна рекомендация и почему иногда лучше не делать лишнего.</motion.p><MotionButtonWrap><Button variant="ghost" onClick={() => location.assign("/reviews")}>Все отзывы</Button></MotionButtonWrap></motion.div>
+            <motion.div className="featureSplitCard__copy" variants={stagger}><motion.div className="sectionLabel" variants={fadeUp}>Отзывы</motion.div><motion.h2 variants={fadeUp}>После приёма должно становиться спокойнее</motion.h2><motion.p variants={fadeUp}>В отзывах пациенты часто говорят не только о результате, но и о самом ощущении приёма: я внимательно слушаю, подробно объясняю и не тороплю с решением.</motion.p><motion.p variants={fadeUp}>Для меня это важная часть работы — чтобы человек понимал, что происходит с кожей, зачем нужна рекомендация и почему иногда лучше не делать лишнего.</motion.p><MotionButtonWrap><Button variant="ghost" onClick={() => location.assign("/reviews")}>Все отзывы</Button></MotionButtonWrap></motion.div>
             <motion.div className="reviewsFeature__list" variants={stagger}>{featuredReviews.map((review) => <motion.article className="reviewFeatureCard" key={review.id} variants={fadeUp} whileHover={cardHover}><div className="reviewFeatureCard__head"><div className="reviewFeatureCard__avatar">{review.name?.[0] || "П"}</div><div><h3>{review.name}</h3><span>{review.source} · {"★".repeat(review.rating)}</span></div></div><p>“{review.text}”</p></motion.article>)}</motion.div>
           </div>
         </Container>

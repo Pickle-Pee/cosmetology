@@ -3,6 +3,10 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./app/App.jsx";
 import "./styles/global.css";
+import "./styles/homeSections.css";
+import "./styles/homeFixes.css";
+import "./styles/homeLayoutPolish.css";
+import "./styles/homeTraining.css";
 import "./styles/premiumInteractions.css";
 import "./styles/homeFinalTweaks.css";
 
